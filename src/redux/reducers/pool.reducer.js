@@ -1,10 +1,10 @@
-const facilityReducer = (state = [], action) => {
+const poolReducer = (state = [], action) => {
     switch (action.type) {
-        case "SET_FACILITY":
+        case "SET_POOL":
             return action.payload;
         default:
             return state;
     }
 };
 
-export default facilityReducer;
+export default poolReducer;
