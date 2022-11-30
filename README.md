@@ -155,6 +155,12 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 ## Server
 
+# Routes
+
+-   Facility
+-   Pool
+-   Test Result
+
 # Authorization Levels (3, 2, 1)
 
 -   Admin (3)
