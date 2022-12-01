@@ -11,11 +11,11 @@ function* facilitySaga() {
 
 function* fetchSpecificFacility() {
     // Fetch specific facility
-//     try {
-//         const facility = yield axios.get ('/api/facility');
-//         console.log('get facility:', facility.data);
-//         yield put ({ type: 'SET_FACILITY', payload: })
-//     }
+    // try {
+    //     const facility = yield axios.get ('/api/facility');
+    //     console.log('get facility:', facility.data);
+    //     yield put ({ type: 'SET_FACILITY', payload: })
+    // }
 }
 
 function* fetchAllFacilities() {
