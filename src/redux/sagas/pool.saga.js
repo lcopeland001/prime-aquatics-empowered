@@ -14,7 +14,15 @@ function* fetchSpecificPool() {
 }
 
 function* fetchAllPools() {
-    // Fetch all pools
+    try {
+        const pool = yield axios.get('/api/pool');
+        console.log('get all:', pool.data);
+        yield put({ type: 'SET_POOL', payload: pool.data });
+
+    } catch {
+        console.log('get all error');
+    }
+        
 }
 
 function* postPool() {

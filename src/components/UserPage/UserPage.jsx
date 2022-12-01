@@ -12,7 +12,7 @@ function UserPage() {
   const pool = useSelector((store) => store.pool)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_PROPERTY' });
+    dispatch({ type: 'FETCH_POOLS' });
   }, []);
   
   return (
