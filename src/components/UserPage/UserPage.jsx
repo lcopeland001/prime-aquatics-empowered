@@ -12,7 +12,7 @@ function UserPage() {
   const pool = useSelector((store) => store.pool)
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_PROPERTY' });
+    dispatch({ type: 'FETCH_POOLS' });
   }, []);
   
   return (
@@ -20,13 +20,13 @@ function UserPage() {
       <h2>Welcome, {user.first_name}!</h2>
 
       <section className='pool-list'>
-        {pool.map(pool => {
+        {/* {pool.map(pool => {
           return (
             <>
             {pool.name} 
             </>
           );
-        })}
+        })} */}
       </section>
     </div>
   );
