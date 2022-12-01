@@ -3,7 +3,7 @@ import errors from "./errors.reducer";
 import user from "./user.reducer";
 import facilityReducer from "./facility.reducer";
 import poolReducer from "./pool.reducer";
-import testResultReducer from "./testResult.reducer";
+import resultReducer from "./result.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     user, // will have an id and username if someone is logged in
     facilityReducer, // our facilities
     poolReducer, // our pools
-    testResultReducer, // our test results
+    resultReducer, // our test results
 });
 
 export default rootReducer;

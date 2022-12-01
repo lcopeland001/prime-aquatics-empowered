@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 function WaterTestPage() {
-    const WaterTestResults = useSelector( store => store.WaterTestResults );
+    const WaterTestResults = useSelector( store => store.resultReducer);
     const [ph, setPh] = useState('');
     const [free_cl, setfFree_cl] = useState('');
     const [combined_cl, setCombined_cl] = useState('');
