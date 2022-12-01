@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import { Pool } from '@mui/icons-material';
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const user = useSelector((store) => store.user);
+  const pool = useSelector((store) => store.pool)
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PROPERTY' });
+  }, []);
+  
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <h2>Welcome, {user.first_name}!</h2>
+
+      <section className='pool-list'>
+        {pool.map(pool => {
+          return (
+            <>
+            {pool.name} 
+            </>
+          );
+        })}
+      </section>
     </div>
   );
 }
