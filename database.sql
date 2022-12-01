@@ -17,7 +17,6 @@ VALUES ('admin', '123456', 3), ('manager', '123456', 2), ('employee', '123456', 
 
 CREATE TABLE "facility_details" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" INT REFERENCES "user",
     "facility_name" VARCHAR (255),
     "street" VARCHAR (255),
     "city" VARCHAR (255),
@@ -26,12 +25,29 @@ CREATE TABLE "facility_details" (
     "notes" VARCHAR (1000)
 );
 
+-- Junction table to connect user to facility or facilities
+
+CREATE TABLE user_facility (
+    user_id integer NOT NULL REFERENCES "user",
+    facility_id integer NOT NULL REFERENCES "facility_details",
+    PRIMARY KEY (user_id, facility_id)
+);
+
+
 -- Sample facilities with default connection set to user with id = 1
 -- This will break if you have to delete/modify the database and 
 -- don't restart it from scratch
 
-INSERT INTO "facility_details" ("user_id", "facility_name")
-VALUES (1, 'XYZ Pools'), (1, 'ABC Facility');
+INSERT INTO "facility_details" ("facility_name")
+VALUES ('XYZ Pools'), ('ABC Facility');
+
+-- Sample data for junction table
+-- Admin has access to both facilities
+-- Manager has access to one facility
+-- Employee has access to one facility
+
+INSERT INTO "user_facility" ("user_id", "facility_id")
+VALUES (1, 1), (1, 2), (2, 1), (3, 2);
 
 CREATE TABLE "pool_type" (
     "id" SERIAL PRIMARY KEY,
@@ -133,6 +149,7 @@ CREATE TABLE "chemical_input" (
     "water_color_id" INT REFERENCES "water_color_type",
     "surface_stains_id" INT REFERENCES "surface_stains_type",
     "equipment_problems_id" INT REFERENCES "equipment_problems_type",
+    "photo" VARCHAR (2000),
     "notes" VARCHAR (1000)
 );
 
