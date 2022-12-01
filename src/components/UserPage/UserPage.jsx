@@ -20,13 +20,13 @@ function UserPage() {
       <h2>Welcome, {user.first_name}!</h2>
 
       <section className='pool-list'>
-        {pool.map(pool => {
+        {/* {pool.map(pool => {
           return (
             <>
             {pool.name} 
             </>
           );
-        })}
+        })} */}
       </section>
     </div>
   );
