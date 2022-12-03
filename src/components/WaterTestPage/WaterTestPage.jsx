@@ -9,11 +9,11 @@ import axios from 'axios';
 function WaterTestPage() {
     const WaterTestResults = useSelector( store => store.resultReducer);
     const [ph, setPh] = useState('');
-    const [free_cl, setfFree_cl] = useState('');
+    const [free_cl, setFree_cl] = useState('');
     const [combined_cl, setCombined_cl] = useState('');
     const [total_cl, setTotal_cl] = useState('');
     const [acid, setAcid] = useState('');
-    const [base, setbase] = useState('');
+    const [base, setBase] = useState('');
     const [alkalinity, setAlkalinity] = useState('');
     const [hardness, setHardness] = useState('');
     const [cyanuric_acid, setCyanuric_acid] = useState('');
@@ -24,27 +24,27 @@ function WaterTestPage() {
     const [temperature, setTemperature] = useState('');
     const [borate, setBorate] = useState('');
     const [salinity, setSalinity] = useState('');
+    const [notes, setNotes] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
 
-    -- WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
+    -- //WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
 
-    // useEffect(()=> { 
+   useEffect(()=> { 
 
-    // })
+     })
 
-}
 
-// const submitForm = (e) => {
-//     e.preventDefault();
-//     if (id){
-//         dispatch({type: 'EDIT_SKATEPARK', payload: { name, location, space_type, difficulty, photo, id}, history});
-//     } else {
-//         dispatch({ type: 'ADD_SKATEPARK', payload: { name, location, space_type, difficulty, photo, feature_id: 1}, history}); 
-//     }
-//     // Pass history with our dispatch so that the saga can redirect
-// }
+
+ const submitForm = (e) => {
+    e.preventDefault();
+  
+     dispatch({ type: 'POST_RESULT', payload: { 
+        ph, free_cl, combined_cl, total_cl, acid, base, alkalinity, hardness, 
+        cyanuric_acid, copper, iron, phosphates, tds, temperature, borate, salinity, notes, history }}); 
+// Pass history with our dispatch so that the saga can redirect
+};
 
 return (
     <div>
@@ -58,6 +58,7 @@ return (
             <p>Total Cl: <input value={total_cl} onChange={(e) => setTotal_cl(e.target.value)} type="text"/></p>
             <p>Acid: <input value={acid} onChange={(e) => setAcid(e.target.value)}  type="text"/></p>
             <p>Base: <input value={base} onChange={(e) => setBase(e.target.value)}  type="text"/></p>
+            <p>Base: <input value={alkalinity} onChange={(e) => setAlkalinity(e.target.value)}  type="text"/></p>
             <p>Hardness: <input value={hardness} onChange={(e) => setHardness(e.target.value)}  type="text"/></p>
             <p>Cyanuric Acid: <input value={cyanuric_acid} onChange={(e) => setCyanuric_acid(e.target.value)}  type="text"/></p>
             <p>Copper: <input value={copper} onChange={(e) => setCopper(e.target.value)}  type="text"/></p>
@@ -67,6 +68,9 @@ return (
             <p>Temperature: <input value={temperature} onChange={(e) => setTemperature(e.target.value)}  type="text"/></p>
             <p>Borate: <input value={borate} onChange={(e) => setBorate(e.target.value)}  type="text"/></p>
             <p>Salinity: <input value={salinity} onChange={(e) => setSalinity(e.target.value)}  type="text"/></p>
+            <br />
+            <br />
+            <p>Notes:<input value={notes} onChange={(e) => setNotes(e.target.value)}  type="text"/></p>
             
             
 
@@ -79,3 +83,7 @@ return (
         </Card>
         </div>
 );
+
+}
+
+export default WaterTestPage;
