@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     // GET route code here
 });
 
+
 /**
  * GET by id route template
  */
@@ -26,6 +27,7 @@ router.get("/", (req, res) => {
       })
   
   });
+
 
 /**
  * POST route template
@@ -48,4 +50,6 @@ router.put("/:id", (req, res) => {
     // PUT route code here
 });
 
+
 module.exports = router;
+
