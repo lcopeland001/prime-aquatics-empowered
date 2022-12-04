@@ -38,6 +38,11 @@ function Nav() {
                             Profile
                         </Link>
 
+                        <Link className="navLink"
+                        to="/facilities">
+                            Facilities
+                        </Link>
+
                         <Link
                             className="navLink"
                             to="/info">

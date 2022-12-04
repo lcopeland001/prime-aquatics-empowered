@@ -23,6 +23,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
+import Facilities from "../Facilities/Facilities";
 
 function App() {
     const dispatch = useDispatch();
@@ -76,6 +77,12 @@ function App() {
                         exact
                         path="/profile">
                         <UserProfile />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                    exact
+                    path="/facilities">
+                        <Facilities />
                     </ProtectedRoute>
 
                     <ProtectedRoute
