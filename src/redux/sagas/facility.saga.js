@@ -10,16 +10,31 @@ function* facilitySaga() {
 }
 
 function* fetchSpecificFacility() {
-    // Fetch specific facility
-    // try {
-    //     const facility = yield axios.get ('/api/facility');
-    //     console.log('get facility:', facility.data);
-    //     yield put ({ type: 'SET_FACILITY', payload: })
+    // try{
+    //     const config = {
+    //         headers: { 'Content-Type' : 'application/json' },
+    //         withCredentials: true,
+    //     }
+    //     const facility = yield axios.get('/api/facility', config);
+    //     yield put ({ type: 'SET_FACILITY', payload: facility.data});
+    // }catch(error){
+    //     console.log('error in fetchAllFacilities saga');
     // }
+
 }
 
 function* fetchAllFacilities() {
     // Fetch all facilities user has access to
+    try{
+        const config = {
+            headers: { 'Content-Type' : 'application/json' },
+            withCredentials: true,
+        }
+        const facilities = yield axios.get('/api/facilities', config);
+        yield put ({ type: 'SET_FACILITIES', payload: facilities.data});
+    }catch(error){
+        console.log('error in fetchAllFacilities saga');
+    }
 }
 
 function* postFacility() {
