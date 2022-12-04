@@ -29,13 +29,15 @@ function WaterTestPage() {
     const history = useHistory();
     const { id } = useParams();
 
-    -- //WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
+   //WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
 
-   useEffect(()=> { 
+   //useEffect(()=> { 
 
-     })
+     //})
 
-
+     const returnHomeButton = () => {
+        history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here
+     }
 
  const submitForm = (e) => {
     e.preventDefault();
