@@ -52,4 +52,31 @@ router.post("/logout", (req, res) => {
     res.sendStatus(200);
 });
 
+// User PUT route
+router.put("/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        const sql = `
+    UPDATE "user"
+    SET "first_name" = $1,
+    "last_name" = $2,
+    "phone_number" = $3
+    WHERE "id" = $4;
+    `;
+        pool.query(sql, [
+            req.body.first_name,
+            req.body.last_name,
+            req.body.phone,
+            req.params.id,
+        ])
+            .then((result) => {
+                res.sendStatus(201);
+            })
+            .catch((e) => {
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403); // Forbidden if unauthenticated
+    }
+});
+
 module.exports = router;
