@@ -78,7 +78,7 @@ function EditProfile() {
                 </div>
                 <div>
                     <label htmlFor="phone">
-                        Last Name:
+                        Phone Number:
                         <input
                             type="text"
                             name="phone"
