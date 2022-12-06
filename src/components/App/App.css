@@ -110,3 +110,19 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.simpleTable {
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px solid #020854;
+  border-collapse: collapse;
+  
+  
+}
+
+.simpleTable td,
+.simpleTable th {
+  padding: 8px;
+  border: 3px solid #377D8C;
+}
+

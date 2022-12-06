@@ -7,6 +7,19 @@ const router = express.Router();
  */
 router.get("/", (req, res) => {
     // GET route code here
+    console.log('re.user: ', req.user);
+    console.log('is authenticated: ', req.isAuthenticated());
+    if(req.isAuthenticated()){
+        let queryText = 'SELECT * FROM "facility_details"';
+        pool.query(queryText, [req.user.id]).then((result) => {
+            res.send(result.rows);
+        }).catch((e) => {
+            console.log('Error getting all the facilities',e);
+            res.sendStatus(500);
+        })
+    }else{
+        res.sendStatus(403);
+    }
 });
 
 /**
