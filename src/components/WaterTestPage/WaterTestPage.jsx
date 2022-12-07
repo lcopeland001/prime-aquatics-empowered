@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import axios from 'axios';
+
 
 
 function WaterTestPage() {
-    const WaterTestResults = useSelector( store => store.resultReducer);
+    //const WaterTestResults = useSelector( store => store.resultReducer);
     const [ph, setPh] = useState('');
     const [free_cl, setFree_cl] = useState('');
     const [combined_cl, setCombined_cl] = useState('');
@@ -27,13 +27,7 @@ function WaterTestPage() {
     const [notes, setNotes] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
-    const { id } = useParams();
-
-   //WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
-
-   //useEffect(()=> { 
-
-     //})
+   
 
      const returnHomeButton = () => {
         history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
