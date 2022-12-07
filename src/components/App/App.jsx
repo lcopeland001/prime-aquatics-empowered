@@ -55,11 +55,7 @@ function App() {
                         <AboutPage />
                     </Route>
 
-                    <Link
-                            className="navLink"
-                            to="/test">
-                            <Test/>
-                    </Link>
+                   
                     {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).

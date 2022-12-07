@@ -71,7 +71,7 @@ return (
             
 
             <input type="submit" />
-            <button onClick={postWaterTest}>Finish Water Test</button>
+            
             <br />
             <br />
             <button onClick={returnHomeButton}>Return To Home</button>
@@ -79,7 +79,7 @@ return (
         </Card>
         </div>
 );
-
+//<button onClick={postWaterTest}>Finish Water Test</button>
 }
 
 export default WaterTestPage;
