@@ -58,8 +58,8 @@ function App() {
                     <Link
                             className="navLink"
                             to="/test">
-                            Test
-                        </Link>
+                            <Test/>
+                    </Link>
                     {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -97,9 +97,10 @@ function App() {
                         path="/edit/:id">
                         <EditProfile />
                     </ProtectedRoute>
+
                     <ProtectedRoute
-                    exact
-                    path="/test/">
+                        exact
+                        path="/test/">
                     <WaterTestPage />
 
                     </ProtectedRoute>
