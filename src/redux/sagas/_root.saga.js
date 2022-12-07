@@ -5,6 +5,7 @@ import userSaga from "./user.saga";
 import facilitySaga from "./facility.saga";
 import poolSaga from "./pool.saga";
 import resultSaga from "./result.saga";
+import fetchAllFacilities from "./facility.saga"
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
         facilitySaga(),
         poolSaga(),
         resultSaga(),
+        
     ]);
 }

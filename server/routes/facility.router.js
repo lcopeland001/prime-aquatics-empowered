@@ -10,8 +10,16 @@ router.get("/", (req, res) => {
     console.log('re.user: ', req.user);
     console.log('is authenticated: ', req.isAuthenticated());
     if(req.isAuthenticated()){
-        let queryText = 'SELECT * FROM "facility_details"';
+        let queryText = 
+        //  `
+        // SELECT "facility_details"."facility_name" FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
+        // WHERE "user_facility"."user_id"=$1;`;
+        `SELECT * FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id" WHERE "user_facility"."user_id"=$1;`;
+    
         pool.query(queryText, [req.user.id]).then((result) => {
+            console.log('USER: ',req.user.id)
+            console.log('Result is:' ,result.rows);
+            console.log(result)
             res.send(result.rows);
         }).catch((e) => {
             console.log('Error getting all the facilities',e);
