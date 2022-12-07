@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import errors from "./errors.reducer";
 import user from "./user.reducer";
-import facilityReducer from "./facility.reducer";
+import facilityReducer from "./facility.reducer.js";
 import poolReducer from "./pool.reducer";
 import resultReducer from "./result.reducer";
 

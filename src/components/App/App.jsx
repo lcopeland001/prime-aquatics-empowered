@@ -81,7 +81,7 @@ function App() {
 
                     <ProtectedRoute
                     exact
-                    path="/facilities">
+                    path="/facility">
                         <Facilities />
                     </ProtectedRoute>
 

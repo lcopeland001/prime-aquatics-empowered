@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useRadioGroup } from '@mui/material';
+import { useRadioGroup, useScrollTrigger } from '@mui/material';
 import UserPage from '../UserPage/UserPage';
 import UserProfile from '../UserProfile/UserProfile';
 
 function Facilities() {
-    const facilities = useSelector (store => store.facilities);
+    const facilities = useSelector ((store) => store.facilityReducer);
+
+    console.log(facilities);
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     useEffect(() => {
         fetchFacilities();
+        
     },[]);
+
     const fetchFacilities = () => {
-        axios.get('/api/facilities').then((response) => {
+        axios.get('/api/facility').then((response) => {
             dispatch({ type: 'SET_FACILITY', payload: response.data})
         }).catch((error) => {
             console.log('Error in facilities.jsx get', error);
@@ -22,8 +26,11 @@ function Facilities() {
     }
     return(
         <div className='container'>
+            {/* <p>{JSON.stringify=(facilities)}</p> */}
+            
             <h2>Welcome, {user.username}</h2>
                 {
+
                 <table className='simpleTable'>
                     <thead>
                         <tr>
@@ -36,20 +43,21 @@ function Facilities() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {
-                            facilities.map((facilities)=> {
+
+                        {
+                            facilities.map((faci)=> {
                                 return(
                                     <tr >
-                                        <td>{facilities.facility_name}</td>
-                                        <td>{facilities.street}</td>
-                                        <td>{facilities.city}</td>
-                                        <td>{facilities.state}</td>
-                                        <td>{facilities.zip}</td>
-                                        <td>{facilities.notes}</td>
+                                        <td>{faci.facility_name}</td>
+                                        <td>{faci.street}</td>
+                                        <td>{faci.city}</td>
+                                        <td>{faci.state}</td>
+                                        <td>{faci.zip}</td>
+                                        <td>{faci.notes}</td>
                                     </tr>
                                 )
                             })
-                        } */}
+                        }
                     </tbody>
                 </table>
                 }

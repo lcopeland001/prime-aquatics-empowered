@@ -39,8 +39,8 @@ function Nav() {
                         </Link>
 
                         <Link className="navLink"
-                        to="/facilities">
-                            Facilities
+                        to="/facility">
+                            Facility
                         </Link>
 
                         <Link

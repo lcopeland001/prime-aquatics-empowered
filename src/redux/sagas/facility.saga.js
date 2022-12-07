@@ -25,16 +25,13 @@ function* fetchSpecificFacility() {
 
 function* fetchAllFacilities() {
     // Fetch all facilities user has access to
-    try{
-        const config = {
-            headers: { 'Content-Type' : 'application/json' },
-            withCredentials: true,
-        }
-        const facilities = yield axios.get('/api/facilities', config);
-        yield put ({ type: 'SET_FACILITIES', payload: facilities.data});
-    }catch(error){
-        console.log('error in fetchAllFacilities saga');
-    }
+    // try{
+    //     const facilities = yield axios.get("/api/facility");
+    //     yield put ({ type: 'SET_FACILITY', payload: facilities.data});
+    //     console.log('data here:',facilities.data)
+    // }catch(error){
+    //     console.log('error in fetchAllFacilities saga');
+    // }
 }
 
 function* postFacility() {
