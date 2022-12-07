@@ -37,9 +37,25 @@ function WaterTestPage() {
     e.preventDefault();
   
      dispatch({ type: 'POST_RESULT', payload: { 
-        ph, free_cl, combined_cl, total_cl, acid, base, alkalinity, hardness, 
-        cyanuric_acid, copper, iron, phosphates, tds, temperature, borate, salinity, notes, history }}); 
-// Pass history with our dispatch so that the saga can redirect
+        ph,
+        free_cl,
+        combined_cl,
+        total_cl,
+        acid,
+        base,
+        alkalinity,
+        hardness, 
+        cyanuric_acid,
+        copper,
+        iron,
+        phosphates,
+        tds,
+        temperature,
+        borate,
+        salinity,
+        notes,
+        }, history}); 
+
 };
 
 return (

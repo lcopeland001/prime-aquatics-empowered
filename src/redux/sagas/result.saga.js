@@ -16,9 +16,18 @@ function* fetchAllResults() {
     // Fetch all test results
 }
 
-function* postResult() {
-    // Record a new test result
-}
+function* postResult(action) {
+    try {
+        console.log('post result saga')
+        yield axios.post(`/api/result`, action.payload);
+        if (action.history) {
+          action.history.push('/');
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
 
 function* deleteResult() {
     // Delete a test result
