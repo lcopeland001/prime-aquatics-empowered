@@ -38,9 +38,12 @@ function* fetchAllUsers() {
     }
 }
 
-function* updateUser(action) {
+function* updateUserProfile(action) {
     try {
-        yield axios.put(`/api/user/${action.payload.id}`, action.payload);
+        yield axios.put(
+            `/api/user/profile/${action.payload.id}`,
+            action.payload
+        );
         yield put({
             type: "FETCH_USER",
         });
@@ -50,10 +53,27 @@ function* updateUser(action) {
     }
 }
 
+function* updateUserAccess(action) {
+    console.log("updateUserAccess is", action);
+    try {
+        yield axios.put(
+            `/api/user/access/${action.payload.id}`,
+            action.payload
+        );
+        yield put({
+            type: "FETCH_USER",
+        });
+    } catch (error) {
+        console.log("Something went wrong updating user access", error);
+        alert("Something went wrong updating user access");
+    }
+}
+
 function* userSaga() {
     yield takeLatest("FETCH_USER", fetchUser);
     yield takeLatest("FETCH_USERS", fetchAllUsers);
-    yield takeLatest("PUT_USER", updateUser);
+    yield takeLatest("PUT_USER_PROFILE", updateUserProfile);
+    yield takeLatest("PUT_USER_ACCESS", updateUserAccess);
 }
 
 export default userSaga;
