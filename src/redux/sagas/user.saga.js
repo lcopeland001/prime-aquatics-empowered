@@ -24,6 +24,20 @@ function* fetchUser() {
     }
 }
 
+function* fetchAllUsers() {
+    try {
+        const users = yield axios.get("/api/user/all");
+        console.log("What are users?", users);
+        yield put({
+            type: "SET_USERS",
+            payload: users.data,
+        });
+    } catch (error) {
+        console.log("Error fetching all users", error);
+        alert("Something went wrong fetching all users");
+    }
+}
+
 function* updateUser(action) {
     try {
         yield axios.put(`/api/user/${action.payload.id}`, action.payload);
@@ -38,6 +52,7 @@ function* updateUser(action) {
 
 function* userSaga() {
     yield takeLatest("FETCH_USER", fetchUser);
+    yield takeLatest("FETCH_USERS", fetchAllUsers);
     yield takeLatest("PUT_USER", updateUser);
 }
 

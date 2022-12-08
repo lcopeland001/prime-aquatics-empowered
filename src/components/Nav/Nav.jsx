@@ -38,8 +38,20 @@ function Nav() {
                             Profile
                         </Link>
 
-                        <Link className="navLink"
-                        to="/facilities">
+                        <Link
+                            className="navLink"
+                            to="/facility">
+                            Facility
+                        </Link>
+                        <Link
+                            className="navLink"
+                            to="/manage">
+                            Manage Users
+                        </Link>
+
+                        <Link
+                            className="navLink"
+                            to="/facilities">
                             Facilities
                         </Link>
 
@@ -47,6 +59,12 @@ function Nav() {
                             className="navLink"
                             to="/info">
                             Info Page
+                        </Link>
+
+                        <Link
+                            className="navLink"
+                            to="/test">
+                            Test
                         </Link>
 
                         <LogOutButton className="navLink" />

@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import axios from 'axios';
+
 
 
 function WaterTestPage() {
-    const WaterTestResults = useSelector( store => store.resultReducer);
+    //const WaterTestResults = useSelector( store => store.resultReducer);
     const [ph, setPh] = useState('');
     const [free_cl, setFree_cl] = useState('');
     const [combined_cl, setCombined_cl] = useState('');
@@ -27,13 +27,7 @@ function WaterTestPage() {
     const [notes, setNotes] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
-    const { id } = useParams();
-
-   //WRITE FUNCTIONS FOR ROUTES FOR FORM BUTTONS!!!!!!
-
-   //useEffect(()=> { 
-
-     //})
+   
 
      const returnHomeButton = () => {
         history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
@@ -43,9 +37,25 @@ function WaterTestPage() {
     e.preventDefault();
   
      dispatch({ type: 'POST_RESULT', payload: { 
-        ph, free_cl, combined_cl, total_cl, acid, base, alkalinity, hardness, 
-        cyanuric_acid, copper, iron, phosphates, tds, temperature, borate, salinity, notes, history }}); 
-// Pass history with our dispatch so that the saga can redirect
+        ph,
+        free_cl,
+        combined_cl,
+        total_cl,
+        acid,
+        base,
+        alkalinity,
+        hardness, 
+        cyanuric_acid,
+        copper,
+        iron,
+        phosphates,
+        tds,
+        temperature,
+        borate,
+        salinity,
+        notes,
+        }, history}); 
+
 };
 
 return (
@@ -77,7 +87,7 @@ return (
             
 
             <input type="submit" />
-            <button onClick={postWaterTest}>Finish Water Test</button>
+            
             <br />
             <br />
             <button onClick={returnHomeButton}>Return To Home</button>
@@ -85,7 +95,7 @@ return (
         </Card>
         </div>
 );
-
+//<button onClick={postWaterTest}>Finish Water Test</button>
 }
 
 export default WaterTestPage;
