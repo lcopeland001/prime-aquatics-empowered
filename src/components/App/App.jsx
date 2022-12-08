@@ -26,6 +26,7 @@ import EditProfile from "../EditProfile/EditProfile";
 import Facilities from "../Facilities/Facilities";
 import WaterTestPage from "../WaterTestPage/WaterTestPage";
 import ManageUser from "../ManageUser/ManageUser";
+import TestResultPage from "../TestResultPage/TestResultPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -109,6 +110,13 @@ function App() {
                         path="/test/">
                         <WaterTestPage />
                     </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/result">
+                        <TestResultPage />
+                    </ProtectedRoute>
+                    
                     <Route
                         exact
                         path="/login">
