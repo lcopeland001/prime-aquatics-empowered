@@ -49,6 +49,12 @@ function Nav() {
                             Info Page
                         </Link>
 
+                        <Link
+                            className="navLink"
+                            to="/test">
+                            Test
+                        </Link>
+
                         <LogOutButton className="navLink" />
                     </>
                 )}
