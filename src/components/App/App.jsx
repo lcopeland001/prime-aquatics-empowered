@@ -25,6 +25,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
 import Facilities from "../Facilities/Facilities";
 import WaterTestPage from "../WaterTestPage/WaterTestPage";
+import ManageUser from "../ManageUser/ManageUser";
 
 function App() {
     const dispatch = useDispatch();
@@ -55,7 +56,6 @@ function App() {
                         <AboutPage />
                     </Route>
 
-                   
                     {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -82,8 +82,18 @@ function App() {
                     </ProtectedRoute>
 
                     <ProtectedRoute
-                    exact
-                    path="/facility">
+                        exact
+                        path="/facility"></ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/manage">
+                        <ManageUser />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/facilities">
                         <Facilities />
                     </ProtectedRoute>
 
@@ -97,8 +107,7 @@ function App() {
                     <ProtectedRoute
                         exact
                         path="/test/">
-                    <WaterTestPage />
-
+                        <WaterTestPage />
                     </ProtectedRoute>
                     <Route
                         exact
