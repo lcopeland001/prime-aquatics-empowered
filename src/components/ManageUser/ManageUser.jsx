@@ -15,6 +15,7 @@ function ManageUser() {
     const [userId, setUserId] = useState("");
     const [userType, setUserType] = useState("");
     const [facilityId, setFacilityId] = useState("");
+    const [facilityAccess, setFacilityAccess] = useState("");
 
     useEffect(() => {
         dispatch({ type: "FETCH_USERS" });
@@ -25,29 +26,32 @@ function ManageUser() {
     const editUserAccess = (e) => {
         e.preventDefault();
         console.log("Editing access");
-        dispatch({
-            type: "PUT_USER_ACCESS",
-            payload: {
-                id: userId,
-                user_access: userType,
-            },
-        });
+        if (userType) {
+            dispatch({
+                type: "PUT_USER_ACCESS",
+                payload: {
+                    id: userId,
+                    user_access: userType,
+                },
+            });
+        }
+
         dispatch({
             type: "PUT_USER_FACILITY",
             payload: {
                 id: userId,
                 facility_id: facilityId,
+                facilityAccess: facilityAccess,
             },
         });
+
+        history.go(0);
     };
 
     return (
         <div className="container">
-            <h3> These are users</h3>
-            {JSON.stringify(users)}
-
-            <br />
-            <br />
+            {/* <h3> These are users</h3>
+            {JSON.stringify(users)} */}
             <h3> These are facilities the user currently has access to</h3>
             {JSON.stringify(userFacilities)}
 
@@ -63,7 +67,7 @@ function ManageUser() {
             <h3>
                 {" "}
                 Currently editing access for {userId}, changing access level to:{" "}
-                {userType} , changing access for facility: {facilityId}
+                {userType} , {facilityAccess} access for facility: {facilityId}
             </h3>
             <select onChange={(e) => setUserId(e.target.value)}>
                 <option value="Select a user"> -- Select a user -- </option>
@@ -84,7 +88,7 @@ function ManageUser() {
                 onChange={(e) => setUserType(e.target.value)}
             />
             <label htmlFor="Employee">Employee</label>
-            <br></br>
+            <br />
             <input
                 type="radio"
                 name="userType"
@@ -112,6 +116,24 @@ function ManageUser() {
 
             <br />
             <br />
+            <input
+                type="radio"
+                name="setFacilityAccess"
+                value="add"
+                onChange={(e) => setFacilityAccess(e.target.value)}
+            />
+            <label htmlFor="Add">Add access to facility</label>
+            <br></br>
+            <input
+                type="radio"
+                name="setFacilityAccess"
+                value="remove"
+                onChange={(e) => setFacilityAccess(e.target.value)}
+            />
+            <label htmlFor="Remove">Remove access to facility</label>
+            <br />
+            <br />
+
             <button onClick={editUserAccess}>
                 {" "}
                 Finish Editing User Access{" "}
