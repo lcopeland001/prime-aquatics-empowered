@@ -8,7 +8,8 @@ function ManageUser() {
     const history = useHistory();
 
     const users = useSelector((store) => store.users);
-    const facilities = useSelector((store) => store.userFacility);
+    const userFacilities = useSelector((store) => store.userFacility);
+    const facilities = useSelector((store) => store.facilityReducer);
     const user = useSelector((store) => store.user);
 
     const [userId, setUserId] = useState("");
@@ -16,8 +17,9 @@ function ManageUser() {
     const [facilityId, setFacilityId] = useState("");
 
     useEffect(() => {
-        dispatch({ type: "FETCH_USERS" }),
-            dispatch({ type: "FETCH_USER_FACILITY", payload: { id: userId } });
+        dispatch({ type: "FETCH_USERS" });
+        dispatch({ type: "FETCH_USER_FACILITY", payload: { id: userId } });
+        dispatch({ type: "FETCH_FACILITIES" });
     }, [userId, dispatch]);
 
     const editUserAccess = (e) => {
@@ -46,7 +48,13 @@ function ManageUser() {
 
             <br />
             <br />
-            <h3> These are facilities</h3>
+            <h3> These are facilities the user currently has access to</h3>
+            {JSON.stringify(userFacilities)}
+
+            <br />
+            <br />
+
+            <h3> These are all facilities</h3>
             {JSON.stringify(facilities)}
 
             <br />

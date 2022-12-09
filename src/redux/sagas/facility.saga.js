@@ -25,13 +25,17 @@ function* fetchSpecificFacility() {
 }
 
 function* fetchAllFacilities() {
-    // try {
-    //     const facilities = yield axios.get("/api/facility");
-    //     yield put({ type: "SET_FACILITY", payload: facilities.data });
-    //     console.log("data here:", facilities.data);
-    // } catch (error) {
-    //     console.log("error in fetchAllFacilities saga");
-    // }
+    try {
+        console.log("Fetching all facilities");
+        const facilities = yield axios.get("/api/facility/all");
+        yield put({
+            type: "SET_FACILITY",
+            payload: facilities.data,
+        });
+    } catch (error) {
+        console.log("Error fetching all facilities");
+        alert("Something went wrong fetching all facilities");
+    }
 }
 
 function* postFacility() {
@@ -59,7 +63,8 @@ function* updateUserFacility(action) {
     console.log("update user facility", action);
     try {
         const facilities = yield axios.put(
-            `/api/facility/user/${action.payload}`
+            `/api/facility/user/${action.payload.id}`,
+            action.payload
         );
         yield put({ type: "SET_USER_FACILITY", payload: facilities.data });
     } catch (error) {
