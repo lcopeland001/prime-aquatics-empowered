@@ -7,6 +7,15 @@ const router = express.Router();
  */
 router.get("/", (req, res) => {
     // GET route code here
+    const queryText = 'SELECT * FROM "chemical_input";';
+    pool.query(queryText)
+    .then((result) => {
+        console.log('SELECT RESULT success!', result );
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log('Error in GET RESULT', error);
+        res.sendStatus(500);
+    });
 });
 
 /**

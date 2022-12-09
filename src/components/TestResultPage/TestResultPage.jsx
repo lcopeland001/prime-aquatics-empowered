@@ -7,8 +7,29 @@ import Card from '@mui/material/Card';
 
 function TestResultPage() {
     const result = useSelector((store) => store.resultReducer)
-    console.log(result);
-    return(<div></div>)
+    const dispatch = useDispatch();
+    console.log("What is this?",result);
+    
+
+    useEffect (() => {
+        dispatch ({ type: 'FETCH_RESULT' });
+    }, []);
+
+    return (
+    <>
+    <div>Test Results</div>
+
+       { result.map(tomato => {
+        return (<div key={ tomato.id }>
+        <h2> Test Result By ID </h2>
+        {JSON.stringify(tomato)}
+        </div>
+        )
+       })
+       
+       }
+       </>
+    );
 }
 
 export default TestResultPage;
