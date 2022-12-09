@@ -7,25 +7,27 @@ const router = express.Router();
  */
 router.get("/", (req, res) => {
     // GET route code here
-    console.log('re.user: ', req.user);
-    console.log('is authenticated: ', req.isAuthenticated());
-    if(req.isAuthenticated()){
-        let queryText = 
-        //  `
-        // SELECT "facility_details"."facility_name" FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
-        // WHERE "user_facility"."user_id"=$1;`;
-        `SELECT * FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id" WHERE "user_facility"."user_id"=$1;`;
-    
-        pool.query(queryText, [req.user.id]).then((result) => {
-            console.log('USER: ',req.user.id)
-            console.log('Result is:' ,result.rows);
-            console.log(result)
-            res.send(result.rows);
-        }).catch((e) => {
-            console.log('Error getting all the facilities',e);
-            res.sendStatus(500);
-        })
-    }else{
+    console.log("re.user: ", req.user);
+    console.log("is authenticated: ", req.isAuthenticated());
+    if (req.isAuthenticated()) {
+        let queryText =
+            //  `
+            // SELECT "facility_details"."facility_name" FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
+            // WHERE "user_facility"."user_id"=$1;`;
+            `SELECT * FROM "facility_details" JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id" WHERE "user_facility"."user_id"=$1;`;
+
+        pool.query(queryText, [req.user.id])
+            .then((result) => {
+                console.log("USER: ", req.user.id);
+                console.log("Result is:", result.rows);
+                console.log(result);
+                res.send(result.rows);
+            })
+            .catch((e) => {
+                console.log("Error getting all the facilities", e);
+                res.sendStatus(500);
+            });
+    } else {
         res.sendStatus(403);
     }
 });
@@ -56,6 +58,48 @@ router.delete("/:id", (req, res) => {
  */
 router.put("/:id", (req, res) => {
     // PUT route code here
+});
+
+router.get("/user/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        let sql = `SELECT "user"."first_name", "facility_details"."facility_name", "facility_details"."id"
+            FROM "facility_details"
+            JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
+            JOIN "user" ON "user"."id" = "user_facility"."user_id"
+            WHERE "user"."id" = $1`;
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                console.log("Result of user_facility request is", result);
+                res.send(result.rows);
+            })
+            .catch((e) => {
+                console.log(
+                    "Error getting all specific facilities for a user",
+                    e
+                );
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+router.put("/user/", (req, res) => {
+    if (req.isAuthenticated()) {
+        console.log("what is in req.body");
+        let sql = ``;
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                console.log("Result of updating user_facility is", result);
+                res.send(result.rows);
+            })
+            .catch((e) => {
+                console.log("Error updating user facility access", e);
+            });
+        res.sendStatus(500);
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 module.exports = router;

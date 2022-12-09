@@ -27,7 +27,6 @@ function* fetchUser() {
 function* fetchAllUsers() {
     try {
         const users = yield axios.get("/api/user/all");
-        console.log("What are users?", users);
         yield put({
             type: "SET_USERS",
             payload: users.data,

@@ -5,6 +5,7 @@ import facilityReducer from "./facility.reducer.js";
 import poolReducer from "./pool.reducer";
 import resultReducer from "./result.reducer";
 import users from "./users.reducer";
+import userFacility from "./userfacility.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     poolReducer, // our pools
     resultReducer, // our test results
     users, // multiple user reducer
+    userFacility, // for storing the facilities by user
 });
 
 export default rootReducer;

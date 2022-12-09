@@ -7,20 +7,18 @@ function ManageUser() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(() => {
-        dispatch({ type: "FETCH_USERS" });
-    }, [dispatch]);
-
     const users = useSelector((store) => store.users);
+    const facilities = useSelector((store) => store.userFacility);
     const user = useSelector((store) => store.user);
-
-    const handleSelection = (e) => {
-        setUserId(e.target.value);
-        console.log(userId, userType);
-    };
 
     const [userId, setUserId] = useState("");
     const [userType, setUserType] = useState("");
+    const [facilityId, setFacilityId] = useState("");
+
+    useEffect(() => {
+        dispatch({ type: "FETCH_USERS" }),
+            dispatch({ type: "FETCH_USER_FACILITY", payload: { id: userId } });
+    }, [userId, dispatch]);
 
     const editUserAccess = (e) => {
         e.preventDefault();
@@ -32,20 +30,34 @@ function ManageUser() {
                 user_access: userType,
             },
         });
+        dispatch({
+            type: "PUT_USER_FACILITY",
+            payload: {
+                id: userId,
+                facility_id: facilityId,
+            },
+        });
     };
 
     return (
         <div className="container">
+            <h3> These are users</h3>
             {JSON.stringify(users)}
+
+            <br />
+            <br />
+            <h3> These are facilities</h3>
+            {JSON.stringify(facilities)}
+
             <br />
             <br />
 
             <h3>
                 {" "}
-                Currently editing access for {userId}, changing access to:{" "}
-                {userType}{" "}
+                Currently editing access for {userId}, changing access level to:{" "}
+                {userType} , changing access for facility: {facilityId}
             </h3>
-            <select onChange={handleSelection}>
+            <select onChange={(e) => setUserId(e.target.value)}>
                 <option value="Select a user"> -- Select a user -- </option>
                 {users.map((user) => (
                     <option
@@ -76,6 +88,22 @@ function ManageUser() {
             <br />
             <br />
 
+            <select onChange={(e) => setFacilityId(e.target.value)}>
+                <option value="Select a facility">
+                    {" "}
+                    -- Select a facility --{" "}
+                </option>
+                {facilities.map((facility) => (
+                    <option
+                        key={facility.id}
+                        value={facility.id}>
+                        {facility.facility_name}
+                    </option>
+                ))}
+            </select>
+
+            <br />
+            <br />
             <button onClick={editUserAccess}>
                 {" "}
                 Finish Editing User Access{" "}
