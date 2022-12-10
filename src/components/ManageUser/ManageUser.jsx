@@ -14,9 +14,24 @@ function ManageUser() {
     const users = useSelector((store) => store.users);
     const user = useSelector((store) => store.user);
 
-    const [selection, setSelection] = useState("");
     const handleSelection = (e) => {
-        setSelection(e.target.value);
+        setUserId(e.target.value);
+        console.log(userId, userType);
+    };
+
+    const [userId, setUserId] = useState("");
+    const [userType, setUserType] = useState("");
+
+    const editUserAccess = (e) => {
+        e.preventDefault();
+        console.log("Editing access");
+        dispatch({
+            type: "PUT_USER_ACCESS",
+            payload: {
+                id: userId,
+                user_access: userType,
+            },
+        });
     };
 
     return (
@@ -24,19 +39,47 @@ function ManageUser() {
             {JSON.stringify(users)}
             <br />
             <br />
+
+            <h3>
+                {" "}
+                Currently editing access for {userId}, changing access to:{" "}
+                {userType}{" "}
+            </h3>
             <select onChange={handleSelection}>
                 <option value="Select a user"> -- Select a user -- </option>
-                {/* Mapping through each fruit object in our fruits array
-            and returning an option element with the appropriate attributes / values.
-           */}
                 {users.map((user) => (
                     <option
                         key={user.id}
                         value={user.id}>
-                        {user.id}
+                        {user.first_name}
                     </option>
                 ))}
             </select>
+            <br />
+            <br />
+            <input
+                type="radio"
+                name="userType"
+                value="1"
+                onChange={(e) => setUserType(e.target.value)}
+            />
+            <label htmlFor="Employee">Employee</label>
+            <br></br>
+            <input
+                type="radio"
+                name="userType"
+                value="2"
+                onChange={(e) => setUserType(e.target.value)}
+            />
+            <label htmlFor="Manager">Manager</label>
+
+            <br />
+            <br />
+
+            <button onClick={editUserAccess}>
+                {" "}
+                Finish Editing User Access{" "}
+            </button>
         </div>
     );
 }

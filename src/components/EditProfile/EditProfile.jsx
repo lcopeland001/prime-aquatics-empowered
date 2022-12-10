@@ -32,7 +32,7 @@ function EditProfile() {
         event.preventDefault();
         console.log("Editing profile");
         dispatch({
-            type: "PUT_USER",
+            type: "PUT_USER_PROFILE",
             payload: {
                 id: id,
                 first_name: firstName,
