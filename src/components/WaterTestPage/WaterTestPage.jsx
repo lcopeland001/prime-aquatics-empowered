@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import "./App.css";
+import "../App/App.css";
 
 import "./WaterTestPage.css";
 
