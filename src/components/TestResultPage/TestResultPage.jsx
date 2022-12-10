@@ -22,7 +22,10 @@ function TestResultPage() {
        { result.map(tomato => {
         return (<div key={ tomato.id }>
         <h2> Test Result By ID </h2>
+        <h2> {tomato.ph}</h2>
         {JSON.stringify(tomato)}
+        {/* TODO: create components to render each 
+        test result eg. tomato.ph, tomato.free_cl */}
         </div>
         )
        })
