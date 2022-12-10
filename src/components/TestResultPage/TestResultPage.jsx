@@ -16,22 +16,68 @@ function TestResultPage() {
     }, []);
 
     return (
-    <>
-    <div>Test Results</div>
+        <div className='resultContainer'>
+    <h1>Test Results</h1>
+    {
+    <table className='resultTable'>
+            <thead>
+                <tr>
+                    <th>pH</th>
+                    <th>free_cl</th>
+                    <th>combined_cl</th>
+                    <th>total_cl</th>
+                    <th>acid</th>
+                    <th>base</th>
+                    <th>alkalinity</th>
+                    <th>hardness</th>
+                    <th>cyanuric_acid</th>
+                    <th>copper</th>
+                    <th>iron</th>
+                    <th>phosphates</th>
+                    <th>tds</th>
+                    <th>temperature</th>
+                    <th>borate</th>
+                    <th>salinity</th>
+                    <th>notes</th>
+                </tr>
+            </thead>
+                <tbody>
 
-       { result.map(tomato => {
-        return (<div key={ tomato.id }>
-        <h2> Test Result By ID </h2>
-        <h2> {tomato.ph}</h2>
-        {JSON.stringify(tomato)}
-        {/* TODO: create components to render each 
-        test result eg. tomato.ph, tomato.free_cl */}
-        </div>
-        )
-       })
+            
+
+                        { result.map((troy => {
+                            return (
+            
+        
+                                <tr>
+                                    <td>{troy.ph}</td>
+                                    <td>{troy.free_cl}</td>
+                                    <td>{troy.combined_cl}</td>
+                                    <td>{troy.total_cl}</td>
+                                    <td>{troy.acid}</td>
+                                    <td>{troy.base}</td>
+                                    <td>{troy.alkalinity}</td>
+                                    <td>{troy.hardness}</td>
+                                    <td>{troy.cyanuric_acid}</td>
+                                    <td>{troy.copper}</td>
+                                    <td>{troy.iron}</td>
+                                    <td>{troy.phosphates}</td>
+                                    <td>{troy.tds}</td>
+                                    <td>{troy.temperature}</td>
+                                    <td>{troy.borate}</td>
+                                    <td>{troy.salinity}</td>
+                                    <td>{troy.notes}</td>
+                                </tr>
+        
+                            )
+                        })
+                    )}
+                </tbody>
+            </table>
+        }
+    
+       </div>
        
-       }
-       </>
     );
 }
 
