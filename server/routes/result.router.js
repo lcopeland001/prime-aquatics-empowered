@@ -43,8 +43,14 @@ router.post("/", (req, res) => {
         req.body.base, req.body.alkalinity, req.body.hardness, req.body.cyanuric_acid, req.body.copper, 
         req.body.iron, req.body.phosphates, req.body.tds, req.body.temperature, req.body.borate, req.body.salinity, req.body.notes])
     .then(result => {
-      console.log('new test id:', result.rows[0].id);
-      res.sendStatus(201) //ID IS HERE!
+        if (result.rows && result.rows.length >0){
+            console.log('new test id:', result.rows[0].id);
+            res.status(201).send({ id: result.rows[0].id})
+        }else {
+            res.sendStatus(500);
+        }
+        
+        
     })
     .catch(error => {
         console.log(error)
