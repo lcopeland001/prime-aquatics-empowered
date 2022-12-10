@@ -56,6 +56,12 @@ function Nav() {
                             Test
                         </Link>
 
+                        <Link
+                            className="navLink"
+                            to="/result">
+                                Result
+                        </Link>
+
                         <LogOutButton className="navLink" />
                     </>
                 )}
