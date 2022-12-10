@@ -83,10 +83,6 @@ function App() {
 
                     <ProtectedRoute
                         exact
-                        path="/facility"></ProtectedRoute>
-
-                    <ProtectedRoute
-                        exact
                         path="/manage">
                         <ManageUser />
                     </ProtectedRoute>

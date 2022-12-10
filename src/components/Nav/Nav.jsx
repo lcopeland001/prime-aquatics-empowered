@@ -40,11 +40,6 @@ function Nav() {
 
                         <Link
                             className="navLink"
-                            to="/facility">
-                            Facility
-                        </Link>
-                        <Link
-                            className="navLink"
                             to="/manage">
                             Manage Users
                         </Link>
