@@ -11,11 +11,11 @@ function* resultSaga() {
 function* fetchSpecificResult() {
     // Fetch a specific test result
     try {
-      const result = yield axios.get('/api/result/');
-      console.log('get result', result.data);
-      yield put ({ type: 'SET_RESULT', payload: result.data });
-    }catch(error) {
-      console.log('get Result error', error);
+        const result = yield axios.get("/api/result/");
+        console.log("get result", result.data);
+        yield put({ type: "SET_RESULT", payload: result.data });
+    } catch (error) {
+        console.log("get Result error", error);
     }
 }
 
@@ -25,17 +25,16 @@ function* fetchAllResults() {
 
 function* postResult(action) {
     try {
-        console.log('post result saga')
-        yield axios.post(`/api/result`, action.payload);
+        console.log("post result saga");
+        const results = yield axios.post(`/api/result`, action.payload);
         if (action.history) {
-          action.history.push(`/results/${results.data.id}`);
+            action.history.push(`/results/${results.data}`);
         }
-      } catch (e) {
+    } catch (e) {
         console.log(e);
-        alert('something went wrong');
-      }
+        alert("something went wrong");
     }
-
+}
 
 function* deleteResult() {
     // Delete a test result
