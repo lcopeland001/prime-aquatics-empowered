@@ -21,8 +21,17 @@ router.get("/", (req, res) => {
 
 /**
  * GET by id route template
+ * This GET will obtain a specific result
  */
-router.get("/:id", (req, res) => {
+router.get("/detail/:id", (req, res) => {
+    // GET route code here
+});
+
+/**
+ * GET by id route template
+ * This GET will obtain all results when a user selects the test history for a body of water
+ */
+router.get("/pool/:id", (req, res) => {
     // GET route code here
 });
 
