@@ -17,13 +17,15 @@ import "./App.css";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
+// import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
 import Facilities from "../Facilities/Facilities";
+import WaterTestPage from "../WaterTestPage/WaterTestPage";
+import ManageUser from "../ManageUser/ManageUser";
 
 function App() {
     const dispatch = useDispatch();
@@ -68,20 +70,19 @@ function App() {
                     <ProtectedRoute
                         // logged in shows InfoPage else shows LoginPage
                         exact
-                        path="/info">
-                        <InfoPage />
-                    </ProtectedRoute>
-
-                    <ProtectedRoute
-                        // logged in shows InfoPage else shows LoginPage
-                        exact
                         path="/profile">
                         <UserProfile />
                     </ProtectedRoute>
 
                     <ProtectedRoute
-                    exact
-                    path="/facilities">
+                        exact
+                        path="/manage">
+                        <ManageUser />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/facilities">
                         <Facilities />
                     </ProtectedRoute>
 
@@ -92,6 +93,11 @@ function App() {
                         <EditProfile />
                     </ProtectedRoute>
 
+                    <ProtectedRoute
+                        exact
+                        path="/test/">
+                        <WaterTestPage />
+                    </ProtectedRoute>
                     <Route
                         exact
                         path="/login">

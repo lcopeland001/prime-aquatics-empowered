@@ -24,9 +24,25 @@ function* fetchUser() {
     }
 }
 
-function* updateUser(action) {
+function* fetchAllUsers() {
     try {
-        yield axios.put(`/api/user/${action.payload.id}`, action.payload);
+        const users = yield axios.get("/api/user/all");
+        yield put({
+            type: "SET_USERS",
+            payload: users.data,
+        });
+    } catch (error) {
+        console.log("Error fetching all users", error);
+        alert("Something went wrong fetching all users");
+    }
+}
+
+function* updateUserProfile(action) {
+    try {
+        yield axios.put(
+            `/api/user/profile/${action.payload.id}`,
+            action.payload
+        );
         yield put({
             type: "FETCH_USER",
         });
@@ -36,9 +52,42 @@ function* updateUser(action) {
     }
 }
 
+function* updateUserAccess(action) {
+    try {
+        yield axios.put(
+            `/api/user/access/${action.payload.id}`,
+            action.payload
+        );
+        yield put({
+            type: "FETCH_USER",
+        });
+    } catch (error) {
+        console.log("Something went wrong updating user access", error);
+        alert("Something went wrong updating user access");
+    }
+}
+
+function* fetchUserDetail(action) {
+    try {
+        const details = yield axios.get(
+            `/api/user/detail/${action.payload.id}`
+        );
+        yield put({ type: "SET_USER_DETAIL", payload: details.data });
+    } catch (error) {
+        console.log(
+            "Something went wrong fetching a specific user's details",
+            error
+        );
+        alert("Something went wrong fetching a certain user's details");
+    }
+}
+
 function* userSaga() {
     yield takeLatest("FETCH_USER", fetchUser);
-    yield takeLatest("PUT_USER", updateUser);
+    yield takeLatest("FETCH_USERS", fetchAllUsers);
+    yield takeLatest("PUT_USER_PROFILE", updateUserProfile);
+    yield takeLatest("PUT_USER_ACCESS", updateUserAccess);
+    yield takeLatest("FETCH_USER_DETAIL", fetchUserDetail);
 }
 
 export default userSaga;
