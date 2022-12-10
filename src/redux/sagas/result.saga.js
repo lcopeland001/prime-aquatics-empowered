@@ -10,6 +10,13 @@ function* resultSaga() {
 
 function* fetchSpecificResult() {
     // Fetch a specific test result
+    try {
+      const result = yield axios.get('/api/result/');
+      console.log('get result', result.data);
+      yield put ({ type: 'SET_RESULT', payload: result.data });
+    }catch(error) {
+      console.log('get Result error', error);
+    }
 }
 
 function* fetchAllResults() {
