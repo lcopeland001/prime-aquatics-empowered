@@ -21,10 +21,11 @@ function* postResult(action) {
         console.log('post result saga')
         yield axios.post(`/api/result`, action.payload);
         if (action.history) {
-          action.history.push('/');
+          action.history.push(`/results/${results.data.id}`);
         }
       } catch (e) {
         console.log(e);
+        alert('something went wrong');
       }
     }
 

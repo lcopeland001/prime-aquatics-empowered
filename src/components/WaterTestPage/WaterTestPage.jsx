@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
+import "./App.css";
 
-
+import "./WaterTestPage.css";
 
 function WaterTestPage() {
     //const WaterTestResults = useSelector( store => store.resultReducer);
@@ -30,7 +31,8 @@ function WaterTestPage() {
    
 
      const returnHomeButton = () => {
-        history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
+        history.goBack();
+        //history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
      }
 
  const submitForm = (e) => {
