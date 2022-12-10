@@ -102,10 +102,10 @@ function App() {
 
                     <ProtectedRoute
                         exact
-                        path="/result">
+                        path="/result/:id">
                         <TestResultPage />
                     </ProtectedRoute>
-                    
+
                     <Route
                         exact
                         path="/login">
