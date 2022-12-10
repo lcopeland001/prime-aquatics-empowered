@@ -40,11 +40,6 @@ function Nav() {
 
                         <Link
                             className="navLink"
-                            to="/facility">
-                            Facility
-                        </Link>
-                        <Link
-                            className="navLink"
                             to="/manage">
                             Manage Users
                         </Link>
@@ -53,12 +48,6 @@ function Nav() {
                             className="navLink"
                             to="/facilities">
                             Facilities
-                        </Link>
-
-                        <Link
-                            className="navLink"
-                            to="/info">
-                            Info Page
                         </Link>
 
                         <Link

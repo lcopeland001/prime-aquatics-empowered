@@ -29,7 +29,6 @@ app.use("/api/user", userRouter);
 app.use("/api/facility", facilityRouter);
 app.use("/api/pool", poolRouter);
 app.use("/api/result", resultRouter);
-// app.use("/api/facilities",facilityRouter)
 
 // Serve static files
 app.use(express.static("build"));

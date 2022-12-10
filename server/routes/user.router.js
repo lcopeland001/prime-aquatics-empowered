@@ -17,14 +17,28 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 // Obtain all users
 router.get("/all", (req, res) => {
     if (req.isAuthenticated()) {
-        const sql = `SELECT id, first_name, last_name, phone_number FROM "user"`;
+        const sql = `SELECT id, first_name, last_name, phone_number, user_access FROM "user" ORDER BY id ASC `;
         pool.query(sql)
             .then((result) => {
-                console.log("What is result?", result.rows);
                 res.send(result.rows);
             })
             .catch((e) => {
                 console.log("Error getting all users", e);
+                res.sendStatus(500);
+            });
+    }
+});
+
+// Obtain a user's details
+router.get("/detail/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        const sql = `SELECT id, first_name, last_name, phone_number, user_access FROM "user" WHERE id = $1`;
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                res.send(result.rows[0]);
+            })
+            .catch((e) => {
+                console.log("Error getting user detail", e);
                 res.sendStatus(500);
             });
     }
@@ -69,7 +83,7 @@ router.post("/logout", (req, res) => {
 });
 
 // User PUT route
-router.put("/:id", (req, res) => {
+router.put("/profile/:id", (req, res) => {
     if (req.isAuthenticated()) {
         const sql = `
     UPDATE "user"
@@ -84,6 +98,28 @@ router.put("/:id", (req, res) => {
             req.body.phone,
             req.params.id,
         ])
+            .then((result) => {
+                res.sendStatus(201);
+            })
+            .catch((e) => {
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403); // Forbidden if unauthenticated
+    }
+});
+
+// User PUT route
+router.put("/access/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        const sql = `
+  UPDATE "user"
+  SET "user_access" = $1
+  WHERE "id" = $2;
+  `;
+        console.log(req.body.id);
+
+        pool.query(sql, [req.body.user_access, req.body.id])
             .then((result) => {
                 res.sendStatus(201);
             })
