@@ -7,6 +7,8 @@ function* facilitySaga() {
     yield takeLatest("POST_FACILITY", postFacility);
     yield takeLatest("DELETE_FACILITY", deleteFacility);
     yield takeLatest("PUT_FACILITY", updateFacility);
+    yield takeLatest("FETCH_USER_FACILITY", fetchUserFacility);
+    yield takeLatest("PUT_USER_FACILITY", updateUserFacility);
 }
 
 function* fetchSpecificFacility() {
@@ -20,18 +22,20 @@ function* fetchSpecificFacility() {
     // }catch(error){
     //     console.log('error in fetchAllFacilities saga');
     // }
-
 }
 
 function* fetchAllFacilities() {
-    // Fetch all facilities user has access to
-    // try{
-    //     const facilities = yield axios.get("/api/facility");
-    //     yield put ({ type: 'SET_FACILITY', payload: facilities.data});
-    //     console.log('data here:',facilities.data)
-    // }catch(error){
-    //     console.log('error in fetchAllFacilities saga');
-    // }
+    try {
+        console.log("Fetching all facilities");
+        const facilities = yield axios.get("/api/facility/all");
+        yield put({
+            type: "SET_FACILITY",
+            payload: facilities.data,
+        });
+    } catch (error) {
+        console.log("Error fetching all facilities");
+        alert("Something went wrong fetching all facilities");
+    }
 }
 
 function* postFacility() {
@@ -43,5 +47,29 @@ function* deleteFacility() {
 }
 
 function* updateFacility() {}
+
+function* fetchUserFacility(action) {
+    try {
+        const facilities = yield axios.get(
+            `/api/facility/user/${action.payload.id}`
+        );
+        yield put({ type: "SET_USER_FACILITY", payload: facilities.data });
+    } catch (error) {
+        console.log("error in fetchAllFacilities saga");
+    }
+}
+
+function* updateUserFacility(action) {
+    console.log("update user facility", action);
+    try {
+        const facilities = yield axios.put(
+            `/api/facility/user/${action.payload.id}`,
+            action.payload
+        );
+        yield put({ type: "SET_USER_FACILITY", payload: facilities.data });
+    } catch (error) {
+        console.log("error updating user facilities");
+    }
+}
 
 export default facilitySaga;

@@ -27,7 +27,6 @@ function* fetchUser() {
 function* fetchAllUsers() {
     try {
         const users = yield axios.get("/api/user/all");
-        console.log("What are users?", users);
         yield put({
             type: "SET_USERS",
             payload: users.data,
@@ -54,7 +53,6 @@ function* updateUserProfile(action) {
 }
 
 function* updateUserAccess(action) {
-    console.log("updateUserAccess is", action);
     try {
         yield axios.put(
             `/api/user/access/${action.payload.id}`,
@@ -69,11 +67,27 @@ function* updateUserAccess(action) {
     }
 }
 
+function* fetchUserDetail(action) {
+    try {
+        const details = yield axios.get(
+            `/api/user/detail/${action.payload.id}`
+        );
+        yield put({ type: "SET_USER_DETAIL", payload: details.data });
+    } catch (error) {
+        console.log(
+            "Something went wrong fetching a specific user's details",
+            error
+        );
+        alert("Something went wrong fetching a certain user's details");
+    }
+}
+
 function* userSaga() {
     yield takeLatest("FETCH_USER", fetchUser);
     yield takeLatest("FETCH_USERS", fetchAllUsers);
     yield takeLatest("PUT_USER_PROFILE", updateUserProfile);
     yield takeLatest("PUT_USER_ACCESS", updateUserAccess);
+    yield takeLatest("FETCH_USER_DETAIL", fetchUserDetail);
 }
 
 export default userSaga;
