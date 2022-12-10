@@ -29,6 +29,21 @@ router.get("/all", (req, res) => {
     }
 });
 
+// Obtain a user's details
+router.get("/detail/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        const sql = `SELECT id, first_name, last_name, phone_number, user_access FROM "user" WHERE id = $1`;
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                res.send(result.rows[0]);
+            })
+            .catch((e) => {
+                console.log("Error getting user detail", e);
+                res.sendStatus(500);
+            });
+    }
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

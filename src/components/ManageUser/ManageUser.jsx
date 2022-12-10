@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../App/App.css";
 
 function ManageUser() {
@@ -10,28 +10,29 @@ function ManageUser() {
     const users = useSelector((store) => store.users);
     const userFacilities = useSelector((store) => store.userFacility);
     const facilities = useSelector((store) => store.facilityReducer);
-    const user = useSelector((store) => store.user);
+    const userDetails = useSelector((store) => store.userDetails);
 
-    const [userId, setUserId] = useState("");
-    const [userType, setUserType] = useState("");
+    const [userId, setUserId] = useState(1);
+    const [userAccess, setUserAccess] = useState("");
     const [facilityId, setFacilityId] = useState("");
-    const [facilityAccess, setFacilityAccess] = useState("");
+    const [facilityAccess, setFacilityAccess] = useState("(add or remove)");
 
     useEffect(() => {
         dispatch({ type: "FETCH_USERS" });
         dispatch({ type: "FETCH_USER_FACILITY", payload: { id: userId } });
         dispatch({ type: "FETCH_FACILITIES" });
+        dispatch({ type: "FETCH_USER_DETAIL", payload: { id: userId } });
     }, [userId, dispatch]);
 
     const editUserAccess = (e) => {
         e.preventDefault();
         console.log("Editing access");
-        if (userType) {
+        if (userAccess) {
             dispatch({
                 type: "PUT_USER_ACCESS",
                 payload: {
                     id: userId,
-                    user_access: userType,
+                    user_access: userAccess,
                 },
             });
         }
@@ -50,26 +51,20 @@ function ManageUser() {
 
     return (
         <div className="container">
-            {/* <h3> These are users</h3>
-            {JSON.stringify(users)} */}
-            <h3> These are facilities the user currently has access to</h3>
-            {JSON.stringify(userFacilities)}
-
-            <br />
-            <br />
-
-            <h3> These are all facilities</h3>
-            {JSON.stringify(facilities)}
-
-            <br />
-            <br />
-
+            <h1> Manage User Access Level and Facility Access</h1>
             <h3>
-                {" "}
-                Currently editing access for {userId}, changing access level to:{" "}
-                {userType} , {facilityAccess} access for facility: {facilityId}
+                Currently editing access for {userDetails.first_name}, changing
+                access level to: {userAccess}
             </h3>
-            <select onChange={(e) => setUserId(e.target.value)}>
+            <h3>
+                Changing facility access for {userDetails.first_name}:{" "}
+                {facilityAccess} access for the selected facility.
+            </h3>
+            <select
+                onChange={(e) => {
+                    setUserId(e.target.value);
+                    // handleSelect(e.target.value);
+                }}>
                 <option value="Select a user"> -- Select a user -- </option>
                 {users.map((user) => (
                     <option
@@ -83,17 +78,17 @@ function ManageUser() {
             <br />
             <input
                 type="radio"
-                name="userType"
+                name="userAccess"
                 value="1"
-                onChange={(e) => setUserType(e.target.value)}
+                onChange={(e) => setUserAccess(e.target.value)}
             />
             <label htmlFor="Employee">Employee</label>
             <br />
             <input
                 type="radio"
-                name="userType"
+                name="userAccess"
                 value="2"
-                onChange={(e) => setUserType(e.target.value)}
+                onChange={(e) => setUserAccess(e.target.value)}
             />
             <label htmlFor="Manager">Manager</label>
 
@@ -134,13 +129,9 @@ function ManageUser() {
             <br />
             <br />
 
-            <button onClick={editUserAccess}>
-                {" "}
-                Finish Editing User Access{" "}
-            </button>
+            <button onClick={editUserAccess}>Finish Editing User Access</button>
         </div>
     );
 }
 
-// this allows us to use <App /> in index.js
 export default ManageUser;

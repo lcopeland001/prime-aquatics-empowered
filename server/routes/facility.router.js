@@ -21,7 +21,7 @@ router.get("/all", (req, res) => {
 
 router.get("/user/:id", (req, res) => {
     if (req.isAuthenticated()) {
-        let sql = `SELECT "user"."first_name", "facility_details"."facility_name", "facility_details"."id"
+        let sql = `SELECT "facility_details"."facility_name", "facility_details"."id"
             FROM "facility_details"
             JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
             JOIN "user" ON "user"."id" = "user_facility"."user_id"
