@@ -48,8 +48,8 @@ router.get("/user/:id", (req, res) => {
  */
 router.get("/", (req, res) => {
     // GET route code here
-    console.log("re.user: ", req.user);
-    console.log("is authenticated: ", req.isAuthenticated());
+    // console.log("re.user: ", req.user);
+    // console.log("is authenticated: ", req.isAuthenticated());
     if (req.isAuthenticated()) {
         let queryText =
             //  `

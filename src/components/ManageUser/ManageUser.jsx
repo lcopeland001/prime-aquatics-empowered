@@ -49,6 +49,16 @@ function ManageUser() {
         history.go(0);
     };
 
+    const deleteUser = () => {
+        console.log("In delete aquarium");
+        if (confirm("Are you sure you want to delete this user?")) {
+            dispatch({
+                type: "DELETE_USER",
+                payload: { id: userId },
+            });
+        }
+    };
+
     return (
         <div className="container">
             <h1> Manage User Access Level and Facility Access</h1>
@@ -95,6 +105,10 @@ function ManageUser() {
             <br />
             <br />
 
+            <button onClick={deleteUser}> Delete User </button>
+
+            <br />
+            <br />
             <select onChange={(e) => setFacilityId(e.target.value)}>
                 <option value="Select a facility">
                     {" "}
