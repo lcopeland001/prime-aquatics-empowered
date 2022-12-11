@@ -7,6 +7,7 @@ const CreateEditFacility = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector((store) => store.user);
+    const facility = useSelector((store) => store.facilityDetails);
     const { id } = useParams();
 
     const [facilityName, setFacilityName] = useState("");
@@ -16,26 +17,60 @@ const CreateEditFacility = () => {
     const [zip, setZip] = useState("");
     const [notes, setNotes] = useState("");
 
-    const addFacility = (e) => {
+    if (id) {
+        useEffect(() => {
+            dispatch({
+                type: "FETCH_SPECIFIC_FACILITY",
+                payload: { id: id },
+            });
+        }, [id, dispatch]);
+    }
+
+    useEffect(() => {
+        setFacilityName(facility.facility_name);
+        setAddress(facility.street);
+        setCity(facility.city);
+        setState(facility.state);
+        setZip(facility.zip);
+        setNotes(facility.notes);
+    }, [facility]);
+
+    const completeFacility = (e) => {
         e.preventDefault();
-        dispatch({
-            type: "POST_FACILITY",
-            payload: {
-                facility_name: facilityName,
-                street: address,
-                city: city,
-                state: state,
-                zip: zip,
-                notes: notes,
-            },
-        });
-        history.push("/facilities");
+        if (id) {
+            dispatch({
+                type: "PUT_FACILITY",
+                payload: {
+                    facility_name: facilityName,
+                    street: address,
+                    city: city,
+                    state: state,
+                    zip: zip,
+                    notes: notes,
+                    id: id,
+                },
+            });
+            history.go(-1);
+        } else if (!id) {
+            dispatch({
+                type: "POST_FACILITY",
+                payload: {
+                    facility_name: facilityName,
+                    street: address,
+                    city: city,
+                    state: state,
+                    zip: zip,
+                    notes: notes,
+                },
+            });
+            history.go(-1);
+        }
     };
 
     return (
         <div className="container">
-            <h3> Add a Facility</h3>
-            <form onSubmit={(event) => addFacility(event)}>
+            {id ? <h3> Edit a Facility</h3> : <h3> Add a Facility</h3>}
+            <form onSubmit={(event) => completeFacility(event)}>
                 <div>
                     <label htmlFor="facilityName">
                         Facility Name:
@@ -105,12 +140,21 @@ const CreateEditFacility = () => {
                     </label>
                 </div>
                 <div>
-                    <input
-                        className="btn"
-                        type="submit"
-                        name="submit"
-                        value="Add Facility"
-                    />
+                    {id ? (
+                        <input
+                            className="btn"
+                            type="submit"
+                            name="submit"
+                            value="Finish Editing Facility"
+                        />
+                    ) : (
+                        <input
+                            className="btn"
+                            type="submit"
+                            name="submit"
+                            value="Add Facility"
+                        />
+                    )}
                 </div>
             </form>
         </div>

@@ -8,6 +8,7 @@ import users from "./users.reducer";
 import userFacility from "./userfacility.reducer";
 import userDetails from "./userdetails.reducer";
 import defaultFacility from "./defaultfacility.reducer";
+import facilityDetails from "./facilitydetails.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     userFacility, // for storing the facilities by user
     userDetails, // for retrieving chosen user details
     defaultFacility, // for setting the defaultFacility
+    facilityDetails, // facility details for editing
 });
 
 export default rootReducer;

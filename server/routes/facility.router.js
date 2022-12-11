@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get("/all", (req, res) => {
     if (req.isAuthenticated()) {
-        let sql = `SELECT * FROM "facility_details";`;
+        let sql = `SELECT * FROM "facility_details"
+        ORDER BY "id" ASC;`;
         pool.query(sql)
             .then((result) => {
                 // console.log("Result of all facilities fetch", result);
@@ -57,6 +58,29 @@ router.put("/default/", (req, res) => {
             })
             .catch((e) => {
                 console.log("Error obtaining a specific facility", e);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+/**
+ * GET route to obtain a facility for updating its details
+ */
+
+router.get("/edit/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        let sql = `SELECT * FROM "facility_details"
+        WHERE "id" = $1;
+        `;
+
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                res.send(result.rows[0]);
+            })
+            .catch((e) => {
+                console.log("Error fetching specific facility", e);
                 res.sendStatus(500);
             });
     } else {
@@ -144,7 +168,37 @@ router.delete("/:id", (req, res) => {
  * PUT route template
  */
 router.put("/:id", (req, res) => {
-    // PUT route code here
+    console.log("req.body is", req.body);
+    console.log("req.params is", req.params);
+    if (req.isAuthenticated()) {
+        let sql = `UPDATE "facility_details"
+        SET "facility_name" = $1,
+        "street" = $2,
+        "city" = $3,
+        "state" = $4,
+        "zip" = $5,
+        "notes" = $6
+        WHERE "id" = $7;`;
+
+        pool.query(sql, [
+            req.body.facility_name,
+            req.body.street,
+            req.body.city,
+            req.body.state,
+            req.body.zip,
+            req.body.notes,
+            req.params.id,
+        ])
+            .then((result) => {
+                res.sendStatus(201);
+            })
+            .catch((e) => {
+                console.log("Something went wrong updating facilities");
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 router.put("/user/:id", (req, res) => {
