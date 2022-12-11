@@ -30,8 +30,8 @@ function WaterTestPage() {
     const history = useHistory();
 
     const returnHomeButton = () => {
-        history.goBack();
-        //history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
+        //history.goBack();
+        history.push(`/home/`) //<<<<< ? what goes here!!!
     };
 
     const submitForm = (e) => {
