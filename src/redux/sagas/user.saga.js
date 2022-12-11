@@ -82,12 +82,23 @@ function* fetchUserDetail(action) {
     }
 }
 
+function* deleteUser(action) {
+    try {
+        yield axios.delete(`/api/user/${action.payload.id}`);
+        yield put({ type: "FETCH_USER" });
+    } catch (error) {
+        console.log("Something went wrong deleting user", error);
+        alert("Something went wrong deleting a user");
+    }
+}
+
 function* userSaga() {
     yield takeLatest("FETCH_USER", fetchUser);
     yield takeLatest("FETCH_USERS", fetchAllUsers);
     yield takeLatest("PUT_USER_PROFILE", updateUserProfile);
     yield takeLatest("PUT_USER_ACCESS", updateUserAccess);
     yield takeLatest("FETCH_USER_DETAIL", fetchUserDetail);
+    yield takeLatest("DELETE_USER", deleteUser);
 }
 
 export default userSaga;
