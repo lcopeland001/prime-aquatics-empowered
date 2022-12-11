@@ -6,19 +6,21 @@ import Card from '@mui/material/Card';
 
 
 function TestResultPage() {
-    const result = useSelector((store) => store.resultReducer)
+    const result = useSelector((store) => store.resultReducer);
     const dispatch = useDispatch();
-    console.log("What is this?",result);
+    const { id } = useParams();
     
 
     useEffect (() => {
-        dispatch ({ type: 'FETCH_RESULT' });
-    }, []);
+        dispatch ({ type: 'FETCH_RESULT', payload: {id} });
+    }, [id]);
 
     return (
         <div className='resultContainer'>
     <h1>Test Results</h1>
+    {JSON.stringify(result)}
     {
+    //unordered list might look better here  
     <table className='resultTable'>
             <thead>
                 <tr>
@@ -40,8 +42,8 @@ function TestResultPage() {
                     <th>salinity</th>
                     <th>notes</th>
                 </tr>
-            </thead>
-                <tbody>
+            </thead><tbody><tr><td>{result.ph}</td></tr></tbody>
+                {/* <tbody>
 
             
 
@@ -72,7 +74,7 @@ function TestResultPage() {
                             )
                         })
                     )}
-                </tbody>
+                </tbody> */}
             </table>
         }
     

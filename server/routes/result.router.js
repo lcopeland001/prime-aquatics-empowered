@@ -25,6 +25,19 @@ router.get("/", (req, res) => {
  */
 router.get("/detail/:id", (req, res) => {
     // GET route code here
+    console.log('Specific result', req.params);
+    const queryText = 'SELECT * FROM "chemical_input" WHERE "id" = $1';
+    pool.query(queryText, [req.params.id])
+    .then((result) => {
+        if (result.rows && result.rows.length > 0) {
+            res.status(201).send(result.rows[0]);
+        } else {
+            res.sendStatus(500);
+        }
+    }).catch((error) => {
+        console.log('Error in GET specific results', error);
+        res.sendStatus(500);
+    });
 });
 
 /**
