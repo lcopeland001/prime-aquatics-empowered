@@ -30,8 +30,8 @@ function WaterTestPage() {
     const history = useHistory();
 
     const returnHomeButton = () => {
-        history.goBack();
-        //history.push(`/home/${whatGoesHere}`) //<<<<< ? what goes here!!!
+        //history.goBack();
+        history.push(`/home/`) //<<<<< ? what goes here!!!
     };
 
     const submitForm = (e) => {
@@ -77,7 +77,7 @@ function WaterTestPage() {
                         />
                     </p>
                     <p>
-                        Free Cl:{" "}
+                        Free CL:{" "}
                         <input
                             value={free_cl}
                             onChange={(e) => setFree_cl(e.target.value)}
@@ -85,7 +85,7 @@ function WaterTestPage() {
                         />
                     </p>
                     <p>
-                        Combined Cl:{" "}
+                        Combined CL:{" "}
                         <input
                             value={combined_cl}
                             onChange={(e) => setCombined_cl(e.target.value)}
@@ -93,7 +93,7 @@ function WaterTestPage() {
                         />
                     </p>
                     <p>
-                        Total Cl:{" "}
+                        Total CL:{" "}
                         <input
                             value={total_cl}
                             onChange={(e) => setTotal_cl(e.target.value)}
