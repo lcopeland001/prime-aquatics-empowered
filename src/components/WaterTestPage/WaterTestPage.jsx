@@ -207,11 +207,11 @@ function WaterTestPage() {
                         />
                     </p>
 
-                    <input type="submit" />
+                    <input className="btn" type="submit" />
 
                     <br />
                     <br />
-                    <button onClick={returnHomeButton}>Return To Home</button>
+                    <button className="btn" onClick={returnHomeButton}>Return To Home</button>
                 </form>
             </Card>
         </div>
