@@ -27,7 +27,12 @@ function Facilities() {
 
     return (
         <div className="container">
-            <p>Current selected facility: {selectedFacility.facility_name}</p>
+            <p>Current Selected Facility: {selectedFacility.facility_name}</p>
+            <p>Address: {selectedFacility.street} </p>
+            <p>City: {selectedFacility.city} </p>
+            <p>State: {selectedFacility.state} </p>
+            <p>Zip Code: {selectedFacility.zip} </p>
+            <p>Notes: {selectedFacility.notes} </p>
 
             <br />
             <br />
@@ -37,7 +42,6 @@ function Facilities() {
                     <tr>
                         <th>Set Default</th>
                         <th>Facility</th>
-                        <th>View More Details</th>
                         <th>Edit Facility</th>
                         <th>Delete Facility</th>
                     </tr>
@@ -55,9 +59,6 @@ function Facilities() {
                                     </button>
                                 </td>
                                 <td>{faci.facility_name}</td>
-                                <td>
-                                    <button>View</button>
-                                </td>
                                 <td>
                                     <button>Edit</button>
                                 </td>
