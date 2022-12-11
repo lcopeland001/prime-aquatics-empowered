@@ -20,7 +20,7 @@ CREATE TABLE "facility_details" (
     "facility_name" VARCHAR (255),
     "street" VARCHAR (255),
     "city" VARCHAR (255),
-    "state" VARCHAR (2),
+    "state" VARCHAR (255),
     "zip" VARCHAR (11),
     "notes" VARCHAR (1000)
 );
