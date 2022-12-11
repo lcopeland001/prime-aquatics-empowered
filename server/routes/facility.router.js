@@ -59,8 +59,8 @@ router.get("/", (req, res) => {
 
         pool.query(queryText, [req.user.id])
             .then((result) => {
-                console.log("USER: ", req.user.id);
-                console.log("Result is:", result.rows);
+                // console.log("USER: ", req.user.id);
+                // console.log("Result is:", result.rows);
                 console.log(result);
                 res.send(result.rows);
             })
@@ -103,8 +103,8 @@ router.put("/:id", (req, res) => {
 
 router.put("/user/:id", (req, res) => {
     if (req.isAuthenticated()) {
-        console.log("what is in req.body", req.body);
-        console.log("what is the param id", req.params.id);
+        // console.log("what is in req.body", req.body);
+        // console.log("what is the param id", req.params.id);
         let sql = "";
         if (req.body.facilityAccess === "remove") {
             sql = `DELETE FROM "user_facility"
