@@ -28,7 +28,6 @@ router.get("/user/:id", (req, res) => {
             WHERE "user"."id" = $1`;
         pool.query(sql, [req.params.id])
             .then((result) => {
-                // console.log("Result of user_facility request is", result);
                 res.send(result.rows);
             })
             .catch((e) => {
@@ -36,6 +35,28 @@ router.get("/user/:id", (req, res) => {
                     "Error getting all specific facilities for a user",
                     e
                 );
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+/**
+ * GET specific facility to set as default
+ */
+router.put("/default/", (req, res) => {
+    if (req.isAuthenticated()) {
+        let queryText = `SELECT * FROM "facility_details"
+        JOIN "user_facility" ON "facility_details"."id" = "user_facility"."facility_id"
+        WHERE "user_facility"."user_id" = $1 and "user_facility"."facility_id" = $2;`;
+        pool.query(queryText, [req.body.id, req.body.facilityId])
+            .then((result) => {
+                console.log(result.rows[0]);
+                res.send(result.rows[0]);
+            })
+            .catch((e) => {
+                console.log("Error obtaining a specific facility", e);
                 res.sendStatus(500);
             });
     } else {
@@ -71,13 +92,6 @@ router.get("/", (req, res) => {
     } else {
         res.sendStatus(403);
     }
-});
-
-/**
- * GET by id route template
- */
-router.get("/:id", (req, res) => {
-    // GET route code here
 });
 
 /**

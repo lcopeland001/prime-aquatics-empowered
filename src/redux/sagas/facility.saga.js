@@ -2,7 +2,7 @@ import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 function* facilitySaga() {
-    yield takeLatest("FETCH_FACILITY", fetchSpecificFacility);
+    yield takeLatest("FETCH_SPECIFIC_FACILITY", fetchSpecificFacility);
     yield takeLatest("FETCH_FACILITIES", fetchAllFacilities);
     yield takeLatest("POST_FACILITY", postFacility);
     yield takeLatest("DELETE_FACILITY", deleteFacility);
@@ -11,17 +11,17 @@ function* facilitySaga() {
     yield takeLatest("PUT_USER_FACILITY", updateUserFacility);
 }
 
-function* fetchSpecificFacility() {
-    // try{
-    //     const config = {
-    //         headers: { 'Content-Type' : 'application/json' },
-    //         withCredentials: true,
-    //     }
-    //     const facility = yield axios.get('/api/facility', config);
-    //     yield put ({ type: 'SET_FACILITY', payload: facility.data});
-    // }catch(error){
-    //     console.log('error in fetchAllFacilities saga');
-    // }
+function* fetchSpecificFacility(action) {
+    console.log("specific facility", action);
+    try {
+        const facilities = yield axios.put(
+            `/api/facility/default/`,
+            action.payload
+        );
+        yield put({ type: "SET_DEFAULT_FACILITY", payload: facilities.data });
+    } catch (error) {
+        console.log("error in fetchAllFacilities saga");
+    }
 }
 
 function* fetchAllFacilities() {
