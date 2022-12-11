@@ -28,8 +28,8 @@ CREATE TABLE "facility_details" (
 -- Junction table to connect user to facility or facilities
 
 CREATE TABLE user_facility (
-    user_id integer NOT NULL REFERENCES "user",
-    facility_id integer NOT NULL REFERENCES "facility_details",
+    user_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE,
+    facility_id integer NOT NULL REFERENCES "facility_details" ON DELETE CASCADE,
     PRIMARY KEY (user_id, facility_id)
 );
 
