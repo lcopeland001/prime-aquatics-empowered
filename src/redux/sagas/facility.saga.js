@@ -38,8 +38,14 @@ function* fetchAllFacilities() {
     }
 }
 
-function* postFacility() {
-    // Post a new facility
+function* postFacility(action) {
+    console.log("postfacility", action);
+    try {
+        yield axios.post("/api/facility", action.payload);
+    } catch (e) {
+        console.log("Error creating a new facility", e);
+        alert("Something went wrong creating a facility");
+    }
 }
 
 function* deleteFacility(action) {

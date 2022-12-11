@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function Facilities() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = useSelector((store) => store.user);
     const facilities = useSelector((store) => store.facilityReducer);
     const selectedFacility = useSelector((store) => store.defaultFacility);
@@ -27,12 +29,17 @@ function Facilities() {
 
     return (
         <div className="container">
-            <p>Current Selected Facility: {selectedFacility.facility_name}</p>
-            <p>Address: {selectedFacility.street} </p>
-            <p>City: {selectedFacility.city} </p>
-            <p>State: {selectedFacility.state} </p>
-            <p>Zip Code: {selectedFacility.zip} </p>
-            <p>Notes: {selectedFacility.notes} </p>
+            <h4>Current Selected Facility: {selectedFacility.facility_name}</h4>
+            <h4>Address: {selectedFacility.street} </h4>
+            <h4>City: {selectedFacility.city} </h4>
+            <h4>State: {selectedFacility.state} </h4>
+            <h4>Zip Code: {selectedFacility.zip} </h4>
+            <h4>Notes: {selectedFacility.notes} </h4>
+
+            <button onClick={() => history.push("/createfacility")}>
+                {" "}
+                Add a Facility
+            </button>
 
             <br />
             <br />

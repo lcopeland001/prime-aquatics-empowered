@@ -95,7 +95,28 @@ router.get("/", (req, res) => {
  * POST route template
  */
 router.post("/", (req, res) => {
-    // POST route code here
+    if (req.isAuthenticated()) {
+        let sql = `INSERT INTO "facility_details" ("facility_name", "street", "city", "state", "zip", "notes")
+        VALUES ($1, $2, $3, $4, $5, $6);`;
+
+        pool.query(sql, [
+            req.body.facility_name,
+            req.body.street,
+            req.body.city,
+            req.body.state,
+            req.body.zip,
+            req.body.notes,
+        ])
+            .then((result) => {
+                res.sendStatus(200);
+            })
+            .catch((e) => {
+                console.log("Error creating a new facility");
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 /**

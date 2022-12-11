@@ -1,0 +1,120 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import "../App/App.css";
+
+const CreateEditFacility = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const user = useSelector((store) => store.user);
+    const { id } = useParams();
+
+    const [facilityName, setFacilityName] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [zip, setZip] = useState("");
+    const [notes, setNotes] = useState("");
+
+    const addFacility = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: "POST_FACILITY",
+            payload: {
+                facility_name: facilityName,
+                street: address,
+                city: city,
+                state: state,
+                zip: zip,
+                notes: notes,
+            },
+        });
+        history.push("/facilities");
+    };
+
+    return (
+        <div className="container">
+            <h3> Add a Facility</h3>
+            <form onSubmit={(event) => addFacility(event)}>
+                <div>
+                    <label htmlFor="facilityName">
+                        Facility Name:
+                        <input
+                            type="text"
+                            name="facilityName"
+                            value={facilityName}
+                            onChange={(event) =>
+                                setFacilityName(event.target.value)
+                            }
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="address">
+                        Address:
+                        <input
+                            type="text"
+                            name="address"
+                            value={address}
+                            onChange={(event) => setAddress(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="city">
+                        City:
+                        <input
+                            type="text"
+                            name="city"
+                            value={city}
+                            onChange={(event) => setCity(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="state">
+                        State:
+                        <input
+                            type="text"
+                            name="state"
+                            value={state}
+                            onChange={(event) => setState(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="zip">
+                        Zip:
+                        <input
+                            type="text"
+                            name="zip"
+                            value={zip}
+                            onChange={(event) => setZip(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="notes">
+                        Notes:
+                        <input
+                            type="text"
+                            name="notes"
+                            value={notes}
+                            onChange={(event) => setNotes(event.target.value)}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <input
+                        className="btn"
+                        type="submit"
+                        name="submit"
+                        value="Add Facility"
+                    />
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default CreateEditFacility;
