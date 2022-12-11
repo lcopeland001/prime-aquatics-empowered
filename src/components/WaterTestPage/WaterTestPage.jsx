@@ -117,7 +117,7 @@ function WaterTestPage() {
                         />
                     </p>
                     <p>
-                        Base:{" "}
+                        Alkalinity:{" "}
                         <input
                             value={alkalinity}
                             onChange={(e) => setAlkalinity(e.target.value)}
@@ -196,8 +196,7 @@ function WaterTestPage() {
                             type="text"
                         />
                     </p>
-                    <br />
-                    <br />
+                    
                     <p>
                         Notes:
                         <input
@@ -207,11 +206,10 @@ function WaterTestPage() {
                         />
                     </p>
 
-                    <input type="submit" />
+                    <input className="btn" type="submit" />
 
                     <br />
-                    <br />
-                    <button onClick={returnHomeButton}>Return To Home</button>
+                    <button className="btn" onClick={returnHomeButton}>Return To Home</button>
                 </form>
             </Card>
         </div>
