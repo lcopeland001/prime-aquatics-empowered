@@ -16,6 +16,15 @@ function Facilities() {
         });
     }, [defaultFacility]);
 
+    const deleteFacility = (facilityId) => {
+        if (confirm("Are you sure you want to delete the selected facility?")) {
+            dispatch({
+                type: "DELETE_FACILITY",
+                payload: { id: facilityId },
+            });
+        }
+    };
+
     return (
         <div className="container">
             <p>Current selected facility: {selectedFacility.facility_name}</p>
@@ -53,7 +62,10 @@ function Facilities() {
                                     <button>Edit</button>
                                 </td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button
+                                        onClick={() => deleteFacility(faci.id)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         );

@@ -42,8 +42,14 @@ function* postFacility() {
     // Post a new facility
 }
 
-function* deleteFacility() {
-    // Delete a facility
+function* deleteFacility(action) {
+    try {
+        yield axios.delete(`api/facility/${action.payload.id}`);
+        yield put({ type: "FETCH_FACILITIES" });
+    } catch (error) {
+        console.log("Error deleting specific facility");
+        alert("Something went wrong deleting the facility");
+    }
 }
 
 function* updateFacility() {}
