@@ -46,6 +46,106 @@ function TestResultPage() {
     }
   };
 
+  const getAlkalinityIndicator = (alkalinityValue) => {
+    if (alkalinityValue > 150) {
+      return <span className="high-value">high</span>;
+    } else if (alkalinityValue < 80) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getHardnessIndicator = (hardnessValue) => {
+    if (hardnessValue > 150) {
+      return <span className="high-value">high</span>;
+    } else if (hardnessValue < 80) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getCyanuric_AcidIndicator = (cyanuric_AcidValue) => {
+    if (cyanuric_AcidValue > 50) {
+      return <span className="high-value">high</span>;
+    } else if (cyanuric_AcidValue < 30) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getCopperIndicator = (copperValue) => {
+    if (copperValue > 0.2) {
+      return <span className="high-value">high</span>;
+    } else if (copperValue <= 0.2) {
+      return <span className="good-value">good</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getIronIndicator = (ironValue) => {
+    if (ironValue > 0.3) {
+      return <span className="high-value">high</span>;
+    } else if (ironValue <= 0.3) {
+      return <span className="good-value">good</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getPhosphatesIndicator = (phosphatesValue) => {
+    if (phosphatesValue > 1000) {
+      return <span className="high-value">high</span>;
+    } else if (phosphatesValue <= 1000) {
+      return <span className="good-value">good</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getTdsIndicator = (tdsValue) => {
+    if (tdsValue > 1500) {
+      return <span className="high-value">high</span>;
+    } else if (tdsValue <= 1500) {
+      return <span className="good-value">good</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getTemperatureIndicator = (temperatureValue) => {
+    if (temperatureValue > 94) {
+      return <span className="high-value">high</span>;
+    } else if (temperatureValue < 78) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getBorateIndicator = (borateValue) => {
+    if (borateValue > 50) {
+      return <span className="high-value">high</span>;
+    } else if (borateValue < 30) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getSalinityIndicator = (salinityValue) => {
+    if (salinityValue > 3400) {
+      return <span className="high-value">high</span>;
+    } else if (salinityValue < 2700) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
   useEffect(() => {
     dispatch({ type: "FETCH_RESULT", payload: { id } });
   }, [id]);
@@ -53,7 +153,6 @@ function TestResultPage() {
   return (
     <div className="resultContainer">
       <h1>Test Results</h1>
-      {JSON.stringify(result)}
 
       {
         //unordered list might look better here
@@ -87,34 +186,60 @@ function TestResultPage() {
             <h3>base = {result.base}</h3>
           </li>
           <li>
-            <h3>alkalinity = {result.alkalinity}</h3>
+            <h3>
+              alkalinity = {result.alkalinity}{" "}
+              {getAlkalinityIndicator(result.alkalinity)}
+            </h3>
           </li>
           <li>
-            <h3>hardness = {result.hardness}</h3>
+            <h3>
+              hardness = {result.hardness}{" "}
+              {getHardnessIndicator(result.hardness)}
+            </h3>
           </li>
           <li>
-            <h3>cyanuric_acid = {result.cyanuric_acid}</h3>
+            <h3>
+              cyanuric_acid = {result.cyanuric_acid}{" "}
+              {getCyanuric_AcidIndicator(result.cyanuric_acid)}
+            </h3>
           </li>
           <li>
-            <h3>copper = {result.copper}</h3>
+            <h3>
+              copper = {result.copper} {getCopperIndicator(result.copper)}
+            </h3>
           </li>
           <li>
-            <h3>iron = {result.iron}</h3>
+            <h3>
+              iron = {result.iron} {getIronIndicator(result.iron)}
+            </h3>
           </li>
           <li>
-            <h3>phosphates = {result.phosphates}</h3>
+            <h3>
+              phosphates = {result.phosphates}{" "}
+              {getPhosphatesIndicator(result.phosphates)}
+            </h3>
           </li>
           <li>
-            <h3>tds = {result.tds}</h3>
+            <h3>
+              tds = {result.tds} {getTdsIndicator(result.tds)}
+            </h3>
           </li>
           <li>
-            <h3>temperature = {result.temperature}</h3>
+            <h3>
+              temperature = {result.temperature}{" "}
+              {getTemperatureIndicator(result.temperature)}
+            </h3>
           </li>
           <li>
-            <h3>borate = {result.borate}</h3>
+            <h3>
+              borate = {result.borate} {getBorateIndicator(result.borate)}
+            </h3>
           </li>
           <li>
-            <h3>salinity = {result.salinity}</h3>
+            <h3>
+              salinity = {result.salinity}{" "}
+              {getSalinityIndicator(result.salinity)}
+            </h3>
           </li>
           <li>
             <h3>notes: {result.notes}</h3>
