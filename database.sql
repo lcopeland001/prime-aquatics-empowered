@@ -20,7 +20,7 @@ CREATE TABLE "facility_details" (
     "facility_name" VARCHAR (255),
     "street" VARCHAR (255),
     "city" VARCHAR (255),
-    "state" VARCHAR (2),
+    "state" VARCHAR (255),
     "zip" VARCHAR (11),
     "notes" VARCHAR (1000)
 );
@@ -160,3 +160,12 @@ VALUES (1, 7.4, 2, 'Water is a little bit blue-green, will need to monitor and a
 
 INSERT INTO "chemical_input" ("pool_id", "ph", "temperature", "water_color_id", "notes")
 VALUES (1, 7.5, 82, 1, 'Water is just green now');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.3, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.5, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.4, 'Good');

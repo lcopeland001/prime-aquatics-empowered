@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "../App/App.css";
+import swal from "sweetalert";
 
 function EditProfile() {
     const dispatch = useDispatch();
@@ -15,13 +16,6 @@ function EditProfile() {
     const [lastName, setLastName] = useState(user.last_name);
     const [phone, setPhone] = useState(user.phone_number);
 
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "FETCH_USER",
-    //         payload: id,
-    //     });
-    // }, [id, dispatch]);
-
     useEffect(() => {
         setFirstName(user.first_name);
         setLastName(user.last_name);
@@ -29,6 +23,7 @@ function EditProfile() {
     }, [user]);
 
     const updateProfile = (event) => {
+        swal("User Updated!", "Success", "success");
         event.preventDefault();
         console.log("Editing profile");
         dispatch({

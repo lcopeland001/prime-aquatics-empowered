@@ -27,6 +27,8 @@ import Facilities from "../Facilities/Facilities";
 import WaterTestPage from "../WaterTestPage/WaterTestPage";
 import ManageUser from "../ManageUser/ManageUser";
 import TestResultPage from "../TestResultPage/TestResultPage";
+import CreateEditFacility from "../CreateEditFacility/CreateEditFacility";
+import TestHistory from "../TestHistory/TestHistory";
 
 function App() {
     const dispatch = useDispatch();
@@ -104,6 +106,24 @@ function App() {
                         exact
                         path="/result/:id">
                         <TestResultPage />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/createfacility">
+                        <CreateEditFacility />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/editfacility/:id">
+                        <CreateEditFacility />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/history/:id">
+                        <TestHistory />
                     </ProtectedRoute>
 
                     <Route
