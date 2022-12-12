@@ -19,50 +19,59 @@ function TestResultPage() {
       {JSON.stringify(result)}
       {
         //unordered list might look better here
-        <table className="resultTable">
-          <thead>
-            <tr>
-              <th>pH</th>
-              <th>free_cl</th>
-              <th>combined_cl</th>
-              <th>total_cl</th>
-              <th>acid</th>
-              <th>base</th>
-              <th>alkalinity</th>
-              <th>hardness</th>
-              <th>cyanuric_acid</th>
-              <th>copper</th>
-              <th>iron</th>
-              <th>phosphates</th>
-              <th>tds</th>
-              <th>temperature</th>
-              <th>borate</th>
-              <th>salinity</th>
-              <th>notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{result.ph}</td>
-              <td>{result.free_cl}</td>
-              <td>{result.combined_cl}</td>
-              <td>{result.total_cl}</td>
-              <td>{result.acid}</td>
-              <td>{result.base}</td>
-              <td>{result.alkalinity}</td>
-              <td>{result.hardness}</td>
-              <td>{result.cyanuric_acid}</td>
-              <td>{result.copper}</td>
-              <td>{result.iron}</td>
-              <td>{result.phosphates}</td>
-              <td>{result.tds}</td>
-              <td>{result.temperature}</td>
-              <td>{result.borate}</td>
-              <td>{result.salinity}</td>
-              <td>{result.notes}</td>
-            </tr>
-          </tbody>
-        </table>
+        <ul className="resultList">
+          <li>
+            <h3>pH = {result.ph}</h3>
+          </li>
+          <li>
+            <h3>free_cl = {result.free_cl}</h3>
+          </li>
+          <li>
+            <h3>combined_cl ={result.combined_cl}</h3>
+          </li>
+          <li>
+            <h3>total_cl = {result.total_cl}</h3>
+          </li>
+          <li>
+            <h3>acid = {result.acid}</h3>
+          </li>
+          <li>
+            <h3>base = {result.base}</h3>
+          </li>
+          <li>
+            <h3>alkalinity = {result.alkalinity}</h3>
+          </li>
+          <li>
+            <h3>hardness = {result.hardness}</h3>
+          </li>
+          <li>
+            <h3>cyanuric_acid = {result.cyanuric_acid}</h3>
+          </li>
+          <li>
+            <h3>copper = {result.copper}</h3>
+          </li>
+          <li>
+            <h3>iron = {result.iron}</h3>
+          </li>
+          <li>
+            <h3>phosphates = {result.phosphates}</h3>
+          </li>
+          <li>
+            <h3>tds = {result.tds}</h3>
+          </li>
+          <li>
+            <h3>temperature = {result.temperature}</h3>
+          </li>
+          <li>
+            <h3>borate = {result.borate}</h3>
+          </li>
+          <li>
+            <h3>salinity = {result.salinity}</h3>
+          </li>
+          <li>
+            <h3>notes: {result.notes}</h3>
+          </li>
+        </ul>
       }
     </div>
   );
