@@ -1,6 +1,9 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 /**
  * GET route template
@@ -31,8 +34,18 @@ router.get("/detail/:id", (req, res) => {
  * GET by id route template
  * This GET will obtain all results when a user selects the test history for a body of water
  */
-router.get("/pool/:id", (req, res) => {
-    // GET route code here
+router.get("/pool/:id", rejectUnauthenticated, (req, res) => {
+    const sql = `SELECT * FROM "chemical_input"
+    WHERE "pool_id" = $1;
+    `;
+    pool.query(sql, [req.params.id])
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((e) => {
+            console.log("Error getting results by pool", e);
+            res.sendStatus(500);
+        });
 });
 
 /**

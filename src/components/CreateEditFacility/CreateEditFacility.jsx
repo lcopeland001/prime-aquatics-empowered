@@ -63,7 +63,7 @@ const CreateEditFacility = () => {
                     notes: notes,
                 },
             });
-            history.go(-1);
+            history.push("/facilities");
         }
     };
 
