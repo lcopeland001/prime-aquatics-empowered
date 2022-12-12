@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../App/App.css";
+import swal from "sweetalert";
 
 function ManageUser() {
     const dispatch = useDispatch();
