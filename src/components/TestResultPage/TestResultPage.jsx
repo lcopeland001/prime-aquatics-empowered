@@ -9,6 +9,24 @@ function TestResultPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const [indicator, setIndicator] = useState("");
+  const [ph, setPh] = useState(null);
+  const [free_cl, setFree_Cl] = useState(null);
+  const [combined_cl, setComined_Cl] = useState(null);
+  const [total_cl, setTotal_Cl] = useState(null);
+  const [acid, setAcid] = useState(null);
+  const [base, setBase] = useState(null);
+  const [alkalinity, setAlkalinity] = useState(null);
+  const [hardness, setHardness] = useState(null);
+  const [cyanuric_acid, setCyanuric_Acid] = useState(null);
+  const [copper, setCopper] = useState(null);
+  const [iron, setIron] = useState(null);
+  const [phosphates, setPhosphates] = useState(null);
+  const [tds, setTds] = useState(null);
+  const [temperature, setTemperature] = useState(null);
+  const [borate, setBorate] = useState(null);
+  const [salinity, setSalinity] = useState(null);
+
   useEffect(() => {
     dispatch({ type: "FETCH_RESULT", payload: { id } });
   }, [id]);
