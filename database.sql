@@ -160,3 +160,12 @@ VALUES (1, 7.4, 2, 'Water is a little bit blue-green, will need to monitor and a
 
 INSERT INTO "chemical_input" ("pool_id", "ph", "temperature", "water_color_id", "notes")
 VALUES (1, 7.5, 82, 1, 'Water is just green now');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.3, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.5, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.4, 'Good');

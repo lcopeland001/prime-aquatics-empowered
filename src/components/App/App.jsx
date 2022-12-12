@@ -28,7 +28,7 @@ import WaterTestPage from "../WaterTestPage/WaterTestPage";
 import ManageUser from "../ManageUser/ManageUser";
 import TestResultPage from "../TestResultPage/TestResultPage";
 import CreateEditFacility from "../CreateEditFacility/CreateEditFacility";
-import { Create } from "@mui/icons-material";
+import TestHistory from "../TestHistory/TestHistory";
 
 function App() {
     const dispatch = useDispatch();
@@ -118,6 +118,12 @@ function App() {
                         exact
                         path="/editfacility/:id">
                         <CreateEditFacility />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        exact
+                        path="/history/:id">
+                        <TestHistory />
                     </ProtectedRoute>
 
                     <Route
