@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "../App/App.css";
+import swal from "sweetalert";
 
 const CreateEditFacility = () => {
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const CreateEditFacility = () => {
     const completeFacility = (e) => {
         e.preventDefault();
         if (id) {
+        swal("Facility Edited", "Success!", "success");
             dispatch({
                 type: "PUT_FACILITY",
                 payload: {
@@ -52,6 +54,7 @@ const CreateEditFacility = () => {
             });
             history.go(-1);
         } else if (!id) {
+        swal("Facility Added!", "Success!", "success");
             dispatch({
                 type: "POST_FACILITY",
                 payload: {
