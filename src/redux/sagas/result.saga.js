@@ -12,7 +12,6 @@ function* resultSaga() {
 
 function* fetchSpecificResult(action) {
     // Fetch a specific test result
-    console.log('Tu requests this',action.payload.id);
     try {
         const result = yield axios.get(
             `/api/result/detail/${action.payload.id}`

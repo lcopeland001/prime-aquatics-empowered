@@ -9,23 +9,42 @@ function TestResultPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const [indicator, setIndicator] = useState("");
-  const [ph, setPh] = useState(null);
-  const [free_cl, setFree_Cl] = useState(null);
-  const [combined_cl, setComined_Cl] = useState(null);
-  const [total_cl, setTotal_Cl] = useState(null);
-  const [acid, setAcid] = useState(null);
-  const [base, setBase] = useState(null);
-  const [alkalinity, setAlkalinity] = useState(null);
-  const [hardness, setHardness] = useState(null);
-  const [cyanuric_acid, setCyanuric_Acid] = useState(null);
-  const [copper, setCopper] = useState(null);
-  const [iron, setIron] = useState(null);
-  const [phosphates, setPhosphates] = useState(null);
-  const [tds, setTds] = useState(null);
-  const [temperature, setTemperature] = useState(null);
-  const [borate, setBorate] = useState(null);
-  const [salinity, setSalinity] = useState(null);
+  const getPhIndicator = (phValue) => {
+    console.log("what is the ph", phValue);
+    if (phValue >= 7.7) {
+      return <span className="high-value">high</span>;
+    } else if (phValue <= 7.1) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getFree_ClIndicator = (free_ClValue) => {
+    if (free_ClValue > 5) {
+      return <span className="high-value">high</span>;
+    } else if (free_ClValue < 3) {
+      return <span className="low-value">low</span>;
+    } else {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getCombined_ClIndicator = (combined_ClValue) => {
+    if (combined_ClValue > 0.5) {
+      return <span className="high-value">high</span>;
+    } else if (combined_ClValue <= 0.5) {
+      return <span className="good-value">good</span>;
+    }
+  };
+
+  const getTotal_ClIndicator = (total_ClValue) => {
+    if (total_ClValue > 5.2) {
+      return <span className="high-value">high</span>;
+    } else if (total_ClValue <= 5.2) {
+      return <span className="good-value">good</span>;
+    }
+  };
 
   useEffect(() => {
     dispatch({ type: "FETCH_RESULT", payload: { id } });
@@ -35,20 +54,31 @@ function TestResultPage() {
     <div className="resultContainer">
       <h1>Test Results</h1>
       {JSON.stringify(result)}
+
       {
         //unordered list might look better here
         <ul className="resultList">
           <li>
-            <h3>pH = {result.ph}</h3>
+            <h3>
+              pH = {result.ph} {getPhIndicator(result.ph)}
+            </h3>
           </li>
           <li>
-            <h3>free_cl = {result.free_cl}</h3>
+            <h3>
+              free_cl = {result.free_cl} {getFree_ClIndicator(result.free_cl)}
+            </h3>
           </li>
           <li>
-            <h3>combined_cl ={result.combined_cl}</h3>
+            <h3>
+              combined_cl ={result.combined_cl}{" "}
+              {getCombined_ClIndicator(result.combined_cl)}
+            </h3>
           </li>
           <li>
-            <h3>total_cl = {result.total_cl}</h3>
+            <h3>
+              total_cl = {result.total_cl}{" "}
+              {getTotal_ClIndicator(result.total_cl)}
+            </h3>
           </li>
           <li>
             <h3>acid = {result.acid}</h3>

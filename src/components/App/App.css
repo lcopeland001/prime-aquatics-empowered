@@ -126,3 +126,30 @@ input {
   border: 3px solid #377D8C;
 }
 
+.high-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #FC754E;
+}
+
+.good-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #07aa9e;
+}
+
+.low-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #f23a26;
+}
+
