@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { ListItemIcon } from "@mui/material";
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 function Facilities() {
     const dispatch = useDispatch();
@@ -79,7 +80,7 @@ function Facilities() {
                                 </td>
                                 <td>{faci.facility_name}</td>
                                 <td>
-                                    <Button variant="outlined"
+                                    <Button variant="outlined" endIcon={<EditOutlinedIcon />}
                                         onClick={() => editFacility(faci.id)}>
                                         Edit
                                     </Button>
