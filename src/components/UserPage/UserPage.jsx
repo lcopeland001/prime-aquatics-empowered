@@ -22,8 +22,10 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const pools = useSelector((store) => store.pool);
   const pool = [
-    {name: 'Main Pool', volume: '30000'},
-    {name: 'Spa', volume: '10000'}
+    { id: '1', facility_id: '1', name: 'Main Pool', type_id: '1', volume: '800'},
+    { id: '2', facility_id: '1', name: 'Hot Tub', type_id: '4', volume: '200'},
+    { id: '3', facility_id: '2', name: 'TR Pool 1', type_id: '2', volume: '400'},
+    { id: '4', facility_id: '2', name: 'TR Pool 2', type_id: '2', volume: '400'},
   ]
 
   useEffect(() => {
