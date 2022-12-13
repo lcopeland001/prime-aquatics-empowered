@@ -25,7 +25,7 @@ router.get("/detail/:id", (req, res) => {
 });
 
 /**
- * GET by id route template
+ * GET by id route 
  */
 router.get("/:id", (req, res) => {
     const query = `SELECT * FROM pool_details WHERE "id"=$1`;
@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
 });
 
 /**
- * GET by id route template
+ * GET by id route 
  */
  router.get("/", (req, res) => {
     const query = `SELECT * FROM pool_details;`;
@@ -53,6 +53,51 @@ router.get("/:id", (req, res) => {
             console.log("ERROR: Get all Pools", err);
             res.sendStatus(500);
         });
+});
+
+// router.get("/user/:id", (req, res) => {
+//     if (req.isAuthenticated()) {
+//         let sql = `SELECT "pool_details"."name", "pool_details"."id"
+//             FROM "pool_details"
+//             JOIN "facility_details" ON "pool_details"."facility_id" = "user_pool"."facility_id"
+//             JOIN "user" ON "user"."id" = "user_facility"."user_id"
+//             WHERE "user"."id" = $1`;
+//         pool.query(sql, [req.params.id])
+//             .then((result) => {
+//                 res.send(result.rows);
+//             })
+//             .catch((e) => {
+//                 console.log(
+//                     "Error getting all specific facilities for a user",
+//                     e
+//                 );
+//                 res.sendStatus(500);
+//             });
+//     } else {
+//         res.sendStatus(403);
+//     }
+// });
+
+router.get("/user/:id", (req, res) => {
+    if (req.isAuthenticated()) {
+        let sql = `SELECT *from "pool_details" 
+            JOIN "facility_details" ON "facility_details"."id" = "pool_details"."facility_id";
+            JOIN "user_facility" ON "user
+            `;
+        pool.query(sql, [req.params.id])
+            .then((result) => {
+                res.send(result.rows);
+            })
+            .catch((e) => {
+                console.log(
+                    "Error getting all specific facilities for a user",
+                    e
+                );
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 /**
