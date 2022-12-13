@@ -12,6 +12,10 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,6 +32,10 @@ function UserPage() {
 
   const waterTest = () => {
     history.push('/test');
+}
+
+const TestHistory = () => {
+  history.push('/history/:id');
 }
   
   
@@ -54,8 +62,23 @@ function UserPage() {
                         }
                       />
                       <br/>
-                      <button onClick={waterTest}>Perform a Water Test</button>
-                      <button >View Test History</button>
+
+                      <Button
+                        type="button"
+                        variant="contained"
+                        // endIcon={<EditOutlinedIcon />}
+                        onClick={TestHistory}>
+                        View Test History
+                      </Button>
+
+                      <Button
+                        type="button"
+                        variant="contained"
+                        // endIcon={<EditOutlinedIcon />}
+                        onClick={waterTest}>
+                        Perform Water Test
+                      </Button>
+
                     </ListItem>
                     <Divider variant="inset" component="li" />
                     </>
