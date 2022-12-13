@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import "../App/App.css";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 function UserProfile() {
     const dispatch = useDispatch();
@@ -20,12 +22,12 @@ function UserProfile() {
             <h2>Last Name: {user.last_name}</h2>
             <h2>Phone Number: {user.phone_number}</h2>
             <br />
-            <button
+            <Button
                 type="button"
-                className="btn"
+                variant="contained"
                 onClick={() => editProfile(user)}>
                 Edit Profile
-            </button>
+            </Button>
         </div>
     );
 }

@@ -1,6 +1,8 @@
-import React from 'react';
 import "../App/App.css";
 import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 // This is one of our simplest components
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -41,7 +43,9 @@ function AboutPage() {
 
 
       </div>
-      <button className="btn" onClick={returnHomeButton}>Return To Home</button>
+      <br />
+      <br />
+      <Button variant="contained" onClick={returnHomeButton}>Return To Home</Button>
 
     </div>
   );

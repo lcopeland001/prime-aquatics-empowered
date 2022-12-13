@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+// import Button from 'react-bootstrap/Button';
+// import * as React from 'react';
+import React from "react";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import { ListItemIcon } from "@mui/material";
 
 function Facilities() {
     const dispatch = useDispatch();
@@ -40,10 +48,10 @@ function Facilities() {
             <h4>Notes: {selectedFacility.notes} </h4>
 
             <h4>Current Selected Facility: {selectedFacility.facility_name}</h4>
-            <button onClick={() => history.push("/createfacility")}>
+            <Button variant="contained" onClick={() => history.push("/createfacility")}>
                 {" "}
                 Add a Facility
-            </button>
+            </Button>
 
             <br />
             <br />
@@ -62,25 +70,25 @@ function Facilities() {
                         return (
                             <tr key={faci.id}>
                                 <td>
-                                    <button
+                                    <Button variant="contained"
                                         onClick={() =>
                                             setDefaultFacility(faci.id)
                                         }>
                                         Set Default
-                                    </button>
+                                    </Button>
                                 </td>
                                 <td>{faci.facility_name}</td>
                                 <td>
-                                    <button
+                                    <Button variant="outlined"
                                         onClick={() => editFacility(faci.id)}>
                                         Edit
-                                    </button>
+                                    </Button>
                                 </td>
                                 <td>
-                                    <button
+                                    <Button variant="outlined" color="error" endIcon={<DeleteIcon />}
                                         onClick={() => deleteFacility(faci.id)}>
                                         Delete
-                                    </button>
+                                    </Button>
                                 </td>
                             </tr>
                         );

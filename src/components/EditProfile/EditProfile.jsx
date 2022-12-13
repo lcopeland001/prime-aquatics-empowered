@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "../App/App.css";
 import swal from "sweetalert";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function EditProfile() {
     const dispatch = useDispatch();
@@ -45,8 +51,10 @@ function EditProfile() {
             <form onSubmit={() => updateProfile(event)}>
                 <div>
                     <label htmlFor="firstName">
-                        First Name:
-                        <input
+                        {/* First Name: */}
+                        <TextField
+                            variant="filled"
+                            label="First Name: "
                             type="text"
                             name="firstName"
                             required
@@ -54,13 +62,15 @@ function EditProfile() {
                             onChange={(event) =>
                                 setFirstName(event.target.value)
                             }
-                        />
+                        ></TextField>
                     </label>
                 </div>
                 <div>
                     <label htmlFor="lastName">
-                        Last Name:
-                        <input
+                        {/* Last Name: */}
+                        <TextField
+                            variant="filled"
+                            label="Last Name: "
                             type="text"
                             name="lastName"
                             required
@@ -68,28 +78,34 @@ function EditProfile() {
                             onChange={(event) =>
                                 setLastName(event.target.value)
                             }
-                        />
+                        ></TextField>
                     </label>
                 </div>
                 <div>
                     <label htmlFor="phone">
-                        Phone Number:
-                        <input
+                        {/* Phone Number: */}
+                        <TextField
+                            variant="filled"
+                            label="Phone Number: "
                             type="text"
                             name="phone"
                             required
                             value={phone}
                             onChange={(event) => setPhone(event.target.value)}
-                        />
+                        ></TextField>
                     </label>
                 </div>
                 <div>
-                    <input
-                        className="btn"
-                        type="submit"
-                        name="submit"
-                        value="Finish Editing Profile"
-                    />
+                    <br />
+                    <br />
+                    <Button 
+                    variant="contained"
+                    type="submit"
+                    name="submit"
+                    value="Finish Editing Profile">
+                        Submit
+                    </Button>
+                       
                 </div>
             </form>
         </div>
