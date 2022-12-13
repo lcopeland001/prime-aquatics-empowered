@@ -25,37 +25,37 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: 'FETCH_POOLS' });
   }, []);
+
+  const waterTest = () => {
+    history.push('/test');
+}
   
   
   return (
     <div className="container">
+
       <h2>Welcome, {user.first_name}!</h2>
 
-            <h2>Your Pools</h2>
+            <h2>Your Pools:</h2>
             {/* <pre>{JSON.stringify(user)}</pre> */}
-            {
-                // user.map(user => {
-                //     return <div key={user.id}>{user.first_name}</div>
-                // })
-            }
-                  <section className="pools">
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+
+        <section className="pools">
+          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
               {pool.map(pool => {
                   return (
                     <>
-                      <ListItem alignItems="flex-start" onClick={(event) => displayPool(pool)} 
-                      sx={{'&:hover':{backgroundColor:'LightBlue', cursor:'pointer'}}}>
-                      <ListItemAvatar>
-                        <Avatar alt="Pool"/>
-                      </ListItemAvatar>
+                      <ListItem alignItems="flex-start">
                       <ListItemText
                         primary={pool.name}
                         secondary={
                           <React.Fragment>
-                            {pool.volume}
+                            Volume: {pool.volume}
                           </React.Fragment>
                         }
                       />
+                      <br/>
+                      <button onClick={waterTest}>Perform a Water Test</button>
+                      <button >View Test History</button>
                     </ListItem>
                     <Divider variant="inset" component="li" />
                     </>
