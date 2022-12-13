@@ -55,42 +55,20 @@ router.get("/:id", (req, res) => {
         });
 });
 
-// router.get("/user/:id", (req, res) => {
-//     if (req.isAuthenticated()) {
-//         let sql = `SELECT "pool_details"."name", "pool_details"."id"
-//             FROM "pool_details"
-//             JOIN "facility_details" ON "pool_details"."facility_id" = "user_pool"."facility_id"
-//             JOIN "user" ON "user"."id" = "user_facility"."user_id"
-//             WHERE "user"."id" = $1`;
-//         pool.query(sql, [req.params.id])
-//             .then((result) => {
-//                 res.send(result.rows);
-//             })
-//             .catch((e) => {
-//                 console.log(
-//                     "Error getting all specific facilities for a user",
-//                     e
-//                 );
-//                 res.sendStatus(500);
-//             });
-//     } else {
-//         res.sendStatus(403);
-//     }
-// });
 
 router.get("/user/:id", (req, res) => {
     if (req.isAuthenticated()) {
         let sql = `SELECT *from "pool_details" 
             JOIN "facility_details" ON "facility_details"."id" = "pool_details"."facility_id";
-            JOIN "user_facility" ON "user
-            `;
+            JOIN "user_facility" ON "user_facility"."facility_id" = "pool_details"."facility_id"
+            WHERE "user"."id" = $1;`;
         pool.query(sql, [req.params.id])
             .then((result) => {
                 res.send(result.rows);
             })
             .catch((e) => {
                 console.log(
-                    "Error getting all specific facilities for a user",
+                    "Error getting all specific pools for a user",
                     e
                 );
                 res.sendStatus(500);

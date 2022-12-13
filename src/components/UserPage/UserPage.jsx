@@ -20,7 +20,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((store) => store.user);
-  // const pool = useSelector((store) => store.pool);
+  const pools = useSelector((store) => store.pool);
   const pool = [
     {name: 'Swimming Pool', volume: '30000'},
     {name: 'Spa', volume: '10000'}
@@ -28,6 +28,7 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_POOLS' });
+    dispatch({ type: "FETCH_USER_POOL", payload: { id: user.id } });
   }, []);
 
   const waterTest = () => {
@@ -45,7 +46,7 @@ const TestHistory = () => {
       <h2>Welcome, {user.first_name}!</h2>
 
             <h2>Your Pools:</h2>
-            {/* <pre>{JSON.stringify(user)}</pre> */}
+            <pre>{JSON.stringify(pools)}</pre>
 
         <section className="pools">
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>

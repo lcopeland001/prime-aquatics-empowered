@@ -68,7 +68,7 @@ function* fetchUserPool(action) {
         );
         yield put({ type: "SET_USER_POOL", payload: pool.data });
     } catch (error) {
-        console.log("error in fetchAllFacilities saga");
+        console.log("error in user pool saga");
     }
 }
 
