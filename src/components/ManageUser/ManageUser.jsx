@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../App/App.css";
+import swal from "sweetalert";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from '@mui/icons-material/Send';
+
+
 
 function ManageUser() {
     const dispatch = useDispatch();
@@ -28,6 +35,7 @@ function ManageUser() {
         e.preventDefault();
         console.log("Editing access");
         if (userAccess) {
+        swal("User access has been updated!", "Success!", "success");
             dispatch({
                 type: "PUT_USER_ACCESS",
                 payload: {
@@ -47,6 +55,16 @@ function ManageUser() {
         });
 
         history.go(0);
+    };
+
+    const deleteUser = () => {
+        console.log("In delete aquarium");
+        if (confirm("Are you sure you want to delete this user?")) {
+            dispatch({
+                type: "DELETE_USER",
+                payload: { id: userId },
+            });
+        }
     };
 
     return (
@@ -95,6 +113,10 @@ function ManageUser() {
             <br />
             <br />
 
+            <Button size="small" startIcon={<DeleteIcon />} variant="outlined" color="error" onClick={deleteUser}> Delete User </Button>
+
+            <br />
+            <br />
             <select onChange={(e) => setFacilityId(e.target.value)}>
                 <option value="Select a facility">
                     {" "}
@@ -129,7 +151,7 @@ function ManageUser() {
             <br />
             <br />
 
-            <button onClick={editUserAccess}>Finish Editing User Access</button>
+            <Button variant="contained" endIcon={<SendIcon />} onClick={editUserAccess}>Finish Editing User Access</Button>
         </div>
     );
 }

@@ -32,7 +32,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #62B6CB;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -72,8 +72,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #315f6a;
+  color: #356d7a;
 }
 
 /* --------------------------------------------------------------------------------
@@ -124,5 +124,32 @@ input {
 .simpleTable th {
   padding: 8px;
   border: 3px solid #377D8C;
+}
+
+.high-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #FC754E;
+}
+
+.good-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #07aa9e;
+}
+
+.low-value {
+  padding: 5px 10px 5px 10px;
+  color: white;
+  font-size: 12px;
+  border-radius: 3px;
+  white-space: nowrap;
+  background-color: #f23a26;
 }
 

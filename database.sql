@@ -7,7 +7,7 @@ CREATE TABLE "user" (
     "user_access" INT DEFAULT 1,
     "first_name" VARCHAR (100),
     "last_name" VARCHAR (100),
-    "phone_number" varchar(20)
+    "phone_number" VARCHAR(20)
 );
 
 -- Sample users with different authorization levels
@@ -20,7 +20,7 @@ CREATE TABLE "facility_details" (
     "facility_name" VARCHAR (255),
     "street" VARCHAR (255),
     "city" VARCHAR (255),
-    "state" VARCHAR (2),
+    "state" VARCHAR (255),
     "zip" VARCHAR (11),
     "notes" VARCHAR (1000)
 );
@@ -28,8 +28,8 @@ CREATE TABLE "facility_details" (
 -- Junction table to connect user to facility or facilities
 
 CREATE TABLE user_facility (
-    user_id integer NOT NULL REFERENCES "user",
-    facility_id integer NOT NULL REFERENCES "facility_details",
+    user_id integer NOT NULL REFERENCES "user" ON DELETE CASCADE,
+    facility_id integer NOT NULL REFERENCES "facility_details" ON DELETE CASCADE,
     PRIMARY KEY (user_id, facility_id)
 );
 
@@ -62,7 +62,7 @@ VALUES ('swimming_pool'), ('therapy_pool'), ('baby_pool'), ('hot_tub'), ('splash
 
 CREATE TABLE "pool_details" (
     "id" SERIAL PRIMARY KEY,
-    "facility_id" INT REFERENCES "facility_details",
+    "facility_id" INT REFERENCES "facility_details" ON DELETE CASCADE,
     "name" VARCHAR (100),
     "type_id" INT REFERENCES "pool_type",
     "volume" INT
@@ -125,7 +125,7 @@ VALUES ('corrosion_metal_pitting_plaster'), ('scale_forming_along_waterline'), (
 
 CREATE TABLE "chemical_input" (
     "id" SERIAL PRIMARY KEY,
-    "pool_id" INT REFERENCES "pool_details",
+    "pool_id" INT REFERENCES "pool_details" ON DELETE CASCADE,
     "recorded_at" TIMESTAMP NOT NULL DEFAULT NOW(),
     "ph" NUMERIC,
     "free_cl" NUMERIC,
@@ -160,3 +160,12 @@ VALUES (1, 7.4, 2, 'Water is a little bit blue-green, will need to monitor and a
 
 INSERT INTO "chemical_input" ("pool_id", "ph", "temperature", "water_color_id", "notes")
 VALUES (1, 7.5, 82, 1, 'Water is just green now');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.3, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.5, 'Standard result');
+
+INSERT INTO "chemical_input" ("pool_id", "ph", "notes")
+VALUES (1, 7.4, 'Good');

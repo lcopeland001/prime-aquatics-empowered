@@ -7,6 +7,9 @@ import resultReducer from "./result.reducer";
 import users from "./users.reducer";
 import userFacility from "./userfacility.reducer";
 import userDetails from "./userdetails.reducer";
+import defaultFacility from "./defaultfacility.reducer";
+import facilityDetails from "./facilitydetails.reducer";
+import poolDetail from "./pooldetail.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,10 +22,13 @@ const rootReducer = combineReducers({
     user, // will have an id and username if someone is logged in
     facilityReducer, // our facilities
     poolReducer, // our pools
+    poolDetail, // our specific pool which will be used to retrieve test history
     resultReducer, // our test results
     users, // multiple user reducer
     userFacility, // for storing the facilities by user
     userDetails, // for retrieving chosen user details
+    defaultFacility, // for setting the defaultFacility
+    facilityDetails, // facility details for editing
 });
 
 export default rootReducer;
