@@ -22,7 +22,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const pools = useSelector((store) => store.pool);
   const pool = [
-    {name: 'Swimming Pool', volume: '30000'},
+    {name: 'Main Pool', volume: '30000'},
     {name: 'Spa', volume: '10000'}
   ]
 
@@ -57,12 +57,13 @@ const TestHistory = () => {
                       <ListItemText
                         primary={pool.name}
                         secondary={
-                          <React.Fragment>
+                          <React.Fragment  >
                             Volume: {pool.volume}
                           </React.Fragment>
                         }
                       />
-                      <br/>
+                      &nbsp;
+                      &nbsp;
 
                       <Button
                         type="button"
@@ -71,7 +72,7 @@ const TestHistory = () => {
                         onClick={TestHistory}>
                         View Test History
                       </Button>
-
+                      &nbsp;
                       <Button
                         type="button"
                         variant="contained"
