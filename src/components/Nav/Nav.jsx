@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
 import { useSelector } from "react-redux";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
+import PoolOutlinedIcon from '@mui/icons-material/PoolOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { AddBoxOutlined } from "@mui/icons-material";
 
 function Nav() {
     const user = useSelector((store) => store.user);
@@ -26,33 +33,35 @@ function Nav() {
                 {/* If a user is logged in, show these links */}
                 {user.id && (
                     <>
-                        <Link
+                        
+                        <Link 
+                        
                             className="navLink"
-                            to="/user">
+                            to="/user"><HomeOutlinedIcon fontSize="medium" />
                             Home
                         </Link>
 
                         <Link
                             className="navLink"
-                            to="/profile">
+                            to="/profile"><AccountBoxOutlinedIcon />
                             Profile
                         </Link>
 
                         <Link
                             className="navLink"
-                            to="/manage">
+                            to="/manage"><ManageAccountsOutlinedIcon />
                             Manage Users
                         </Link>
 
                         <Link
                             className="navLink"
-                            to="/facilities">
+                            to="/facilities"><ApartmentOutlinedIcon />
                             Facilities
                         </Link>
 
                         <Link
                             className="navLink"
-                            to="/test">
+                            to="/test"><PoolOutlinedIcon />
                             Test
                         </Link>
 
@@ -61,14 +70,14 @@ function Nav() {
                             to="/result">
                                 Result
                         </Link> */}
-
+                        
                         <LogOutButton className="navLink" />
                     </>
                 )}
 
                 <Link
                     className="navLink"
-                    to="/about">
+                    to="/about"><InfoOutlinedIcon />
                     About
                 </Link>
             </div>
