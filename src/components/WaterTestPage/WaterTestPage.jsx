@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import "../App/App.css";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import "./WaterTestPage.css";
 
@@ -69,128 +75,160 @@ function WaterTestPage() {
 
                 <form onSubmit={submitForm}>
                     <p>
-                        Ph:{" "}
-                        <input
+                        {" "}
+                        <TextField
+                            variant="filled"
+                            label="PH: "
                             value={ph}
                             onChange={(e) => setPh(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Free CL:{" "}
-                        <input
+                        {/* Free CL:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Free CL: "
                             value={free_cl}
                             onChange={(e) => setFree_cl(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Combined CL:{" "}
-                        <input
+                        {/* Combined CL:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Combined CL: "
                             value={combined_cl}
                             onChange={(e) => setCombined_cl(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Total CL:{" "}
-                        <input
+                        {/* Total CL:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Total CL: "
                             value={total_cl}
                             onChange={(e) => setTotal_cl(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Acid:{" "}
-                        <input
+                        {/* Acid:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Acid: "
                             value={acid}
                             onChange={(e) => setAcid(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Base:{" "}
-                        <input
+                        {/* Base:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Base: "
                             value={base}
                             onChange={(e) => setBase(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Alkalinity:{" "}
-                        <input
+                        {/* Alkalinity:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Alkalinity: "
                             value={alkalinity}
                             onChange={(e) => setAlkalinity(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Hardness:{" "}
-                        <input
+                        {/* Hardness:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Hardness: "
                             value={hardness}
                             onChange={(e) => setHardness(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Cyanuric Acid:{" "}
-                        <input
+                        {/* Cyanuric Acid:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Cyanuric Acid: "
                             value={cyanuric_acid}
                             onChange={(e) => setCyanuric_acid(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Copper:{" "}
-                        <input
+                        {/* Copper:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Copper: "
                             value={copper}
                             onChange={(e) => setCopper(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Iron:{" "}
-                        <input
+                        {/* Iron:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Iron: "
                             value={iron}
                             onChange={(e) => setIron(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Phosphates:{" "}
-                        <input
+                        {/* Phosphates:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Phosphates: "
                             value={phosphates}
                             onChange={(e) => setPhosphates(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Tds:{" "}
-                        <input
+                        {/* Tds:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Tds: "
                             value={tds}
                             onChange={(e) => setTds(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Temperature:{" "}
-                        <input
+                        {/* Temperature:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Temperature: "
                             value={temperature}
                             onChange={(e) => setTemperature(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Borate:{" "}
-                        <input
+                        {/* Borate:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Borate: "
                             value={borate}
                             onChange={(e) => setBorate(e.target.value)}
                             type="text"
                         />
                     </p>
                     <p>
-                        Salinity:{" "}
-                        <input
+                        {/* Salinity:{" "} */}
+                        <TextField
+                            variant="filled"
+                            label="Salinity: "
                             value={salinity}
                             onChange={(e) => setSalinity(e.target.value)}
                             type="text"
@@ -198,18 +236,21 @@ function WaterTestPage() {
                     </p>
                     
                     <p>
-                        Notes:
-                        <input
+                        {/* Notes: */}
+                        <TextField
+                            variant="filled"
+                            label="Notes: "
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             type="text"
                         />
                     </p>
 
-                    <input className="btn" type="submit" />
-
+                    <Button variant="contained" endIcon={<SendIcon />} type="submit" >Submit</Button>
                     <br />
-                    <button className="btn" onClick={returnHomeButton}>Return To Home</button>
+                    <br />
+                    <Button variant="contained" color="success" className="btn" onClick={returnHomeButton}>Return To Home</Button>
+                    <br />
                 </form>
             </Card>
         </div>

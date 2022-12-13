@@ -3,6 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "../App/App.css";
 import swal from "sweetalert";
+// import * as React from 'react';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const CreateEditFacility = () => {
     const dispatch = useDispatch();
@@ -76,10 +83,10 @@ const CreateEditFacility = () => {
             <form onSubmit={(event) => completeFacility(event)}>
                 <div>
                     <label htmlFor="facilityName">
-                        Facility Name:
-                        <input
-                            type="text"
-                            name="facilityName"
+                        {/* Facility Name: */}
+                        <TextField
+                            variant="filled"
+                            label="Facility Name: "
                             value={facilityName}
                             onChange={(event) =>
                                 setFacilityName(event.target.value)
@@ -89,10 +96,10 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     <label htmlFor="address">
-                        Address:
-                        <input
-                            type="text"
-                            name="address"
+                        {/* Address: */}
+                        <TextField
+                            variant="filled"
+                            label="Address: "
                             value={address}
                             onChange={(event) => setAddress(event.target.value)}
                         />
@@ -100,10 +107,10 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     <label htmlFor="city">
-                        City:
-                        <input
-                            type="text"
-                            name="city"
+                        {/* City: */}
+                        <TextField
+                            variant="filled"
+                            label="City: "
                             value={city}
                             onChange={(event) => setCity(event.target.value)}
                         />
@@ -111,10 +118,10 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     <label htmlFor="state">
-                        State:
-                        <input
-                            type="text"
-                            name="state"
+                        {/* State: */}
+                        <TextField
+                            variant="filled"
+                            label="State: "
                             value={state}
                             onChange={(event) => setState(event.target.value)}
                         />
@@ -122,10 +129,10 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     <label htmlFor="zip">
-                        Zip:
-                        <input
-                            type="text"
-                            name="zip"
+                        {/* Zip: */}
+                        <TextField
+                            variant="filled"
+                            label="Zip: "
                             value={zip}
                             onChange={(event) => setZip(event.target.value)}
                         />
@@ -133,10 +140,10 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     <label htmlFor="notes">
-                        Notes:
-                        <input
-                            type="text"
-                            name="notes"
+                        {/* Notes: */}
+                        <TextField
+                            variant="filled"
+                            label="Notes: "
                             value={notes}
                             onChange={(event) => setNotes(event.target.value)}
                         />
@@ -144,19 +151,21 @@ const CreateEditFacility = () => {
                 </div>
                 <div>
                     {id ? (
-                        <input
-                            className="btn"
+                        <Button
+                            variant="contained"
                             type="submit"
                             name="submit"
                             value="Finish Editing Facility"
-                        />
+                        >Submit</Button>
+                        
                     ) : (
-                        <input
-                            className="btn"
+                        <Button
+                            
+                            variant="contained"
                             type="submit"
                             name="submit"
                             value="Add Facility"
-                        />
+                        >Done</Button>
                     )}
                 </div>
             </form>
