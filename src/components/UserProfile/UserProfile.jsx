@@ -4,6 +4,8 @@ import "../App/App.css";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 
 function UserProfile() {
     const dispatch = useDispatch();
@@ -25,6 +27,7 @@ function UserProfile() {
             <Button
                 type="button"
                 variant="contained"
+                endIcon={<EditOutlinedIcon />}
                 onClick={() => editProfile(user)}>
                 Edit Profile
             </Button>
