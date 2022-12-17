@@ -1,12 +1,45 @@
-# Acuatics Empowered
+# Aquatics Empowered
 
-This app uses React, Redux, Express, Passport, SweetAlerts and PostgreSQL (a full list of dependencies can be found in `package.json`).
+This app uses React, Redux, Express, Passport, SweetAlert2 and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Use the Template for This Repository (Don't Clone)
+## Features
 
--   Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+-   Perform a water/chemical test and access the results at a later date
+-   Edit one's own user profile
+-   Manage Users (Edit user access (levels and facility access), delete users)
+-   Manage Facilities (Add, Edit, Delete)
+-   Setting a Default Facility (updates Home Page with pools at that facility)
+-   View test history for a pool (see all test results for a certain pool)
+-   About page that details information about the app
+
+## Known Bugs
+
+-   Home Page does not display the pools that match the facility selected
+-   Home Page: Selecting "View Test History" is unimplemented
+-   Home Page: Perform Water Test goes to the water test route and generally rather than connected to a route for a specific pool
+-   Home Page - console.log: "list should have a unique "key" prop"
+-   Home Page - console.log: "error in user pool saga"
+-   Manage Facilities - Edit Facility - console.log "Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component."
+-   Manage Facilities - Edit Facility - console.log "Warning: `value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components."
+-   Water Test page - should be hidden from Navbar
+-   Water Test page - Test entry does not create a test for a specific pool
+-   Water Test page - Acid/base should be "# of drops"
+-   History page - Drop down menu with dates does not filter results by date
+-   History page - Returning to history page after selecting a result when using the back button crashes the page (just needs to be refreshed)
+
+## Unimplemented Features
+
+-   Chart.js
+-   Image upload
+-   Nav Bar (by user_access level)
+-   Water Condition parameters (connect these data and also display checkboxes and radio buttons)
+-   Water Test page - Add appropriate range indicators
+-   Water Test page - Does not display the current pool test is being performed on
+-   Water Results page - Add appropriate range indicators
+-   Water Results page - Parameters show despite empty value input in the field (would users want all fields to show regardless of data entered?)
+-   Water Results page - Does not display the pool that the test was performed on or the time stamp
 
 ## Prerequisites
 
@@ -64,15 +97,9 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 -   Start postgres if not running already by using `brew services start postgresql`
 -   Run `npm start`
--   Navigate to `localhost:5000`
+-   Navigate to `localhost:5003`
 
 ## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
--   [Initial Set](https://vimeo.com/453297271)
--   [Server Walkthrough](https://vimeo.com/453297212)
--   [Client Walkthrough](https://vimeo.com/453297124)
 
 Directory Structure:
 
@@ -99,99 +126,8 @@ This code is also heavily commented. We recommend reading through the comments, 
 
 1. Create a new Heroku project
 1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
+1. Setup a database with Bit.io
 1. Create the necessary tables
+1. Link the Bit.io database to the Heroku project
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
-
-## Reducers
-
--   Facilities
--   Pools
--   Test Results
-
-## Sagas
-
--   Facilities
-
-    -   POST
-    -   GET
-    -   PUT
-    -   DELETE
-
--   Pools
-
-    -   POST
-    -   GET
-    -   PUT
-    -   DELETE
-
--   Test Results
-
-    -   POST
-    -   GET
-    -   DELETE
-
--   User
-    -   POST
-    -   GET
-    -   PUT
-    -   DELETE
-
-## Server
-
-# Routes
-
--   Facility
--   Pool
--   Test Result
-
-# Authorization Levels (3, 2, 1)
-
--   Admin (3)
-
-    -   All
-
--   Manager (2)
-
-    -   Facilities
-
-        -   GET
-
-    -   Pools
-
-        -   POST
-        -   GET
-        -   PUT
-        -   DELETE
-
-    -   Test Results
-
-        -   POST
-        -   GET
-        -   DELETE
-
-    -   User
-        -   GET
-        -   PUT
-        -   DELETE (others)
-
--   Employee (1)
-
-    -   Pools
-
-        -   GET
-
-    -   Test Results
-
-        -   POST
-        -   GET
-
-    -   User (their own)
-        -   GET
-        -   PUT
